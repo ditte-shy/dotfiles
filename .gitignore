@@ -12,6 +12,12 @@
 !.config/
 !.config/terminal/
 !.config/terminal/*
+!.config/mc/
+!.config/mc/**
+.config/mc/hotlist
 
 # Never track secrets
 .secrets
+
+# OS junk
+.DS_Store

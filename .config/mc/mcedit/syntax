@@ -1,0 +1,2 @@
+file ..\*\\.(md|markdown|txt|text)$ Markdown
+include ~/.local/share/mc/syntax/markdown.syntax
