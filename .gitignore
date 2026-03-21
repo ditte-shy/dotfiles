@@ -14,17 +14,25 @@
 !.config/terminal/*
 !.config/mc/
 !.config/mc/**
+
 .config/mc/hotlist
+
+!.config/lazydocker/
 !.config/lazydocker/config.yml
+!.config/htop/
 !.config/htop/htoprc
+!.config/espanso/
+!.config/espanso/config/
 !.config/espanso/config/default.yml
+!.config/espanso/match/
 !.config/espanso/match/base.yml
 
 # local/share directory
-
+!.local/
+!.local/share/
+!.local/share/mc/
 !.local/share/mc/syntax/
 !.local/share/mc/syntax/*
-
 !.local/share/mc/skins/
 !.local/share/mc/skins/*
 
