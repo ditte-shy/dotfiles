@@ -17,6 +17,8 @@
 .config/mc/hotlist
 !.config/lazydocker/
 !.config/lazydocker/config.yml
+!.config/htop/
+!.config/htop/htoprc
 
 # Never track secrets
 .secrets
