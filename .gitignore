@@ -1,0 +1,12 @@
+# Ignore everything by default
+*
+
+# Whitelist dotfiles
+!.gitignore
+!.bash_profile
+!.bashrc
+!.bash_aliases
+!.bash_functions
+
+# Never track secrets
+.secrets
