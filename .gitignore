@@ -8,9 +8,10 @@
 !.bash_aliases
 !.bash_functions
 
-# Terminal themes
-!terminal/
-!terminal/*
+# Config directory
+!.config/
+!.config/terminal/
+!.config/terminal/*
 
 # Never track secrets
 .secrets
