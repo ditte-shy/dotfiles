@@ -1,0 +1,50 @@
+#!/bin/bash
+#
+# Switches macOS Terminal.app theme between "lilac • dark" and "lilac • light"
+# based on time of day (or macOS appearance).
+
+DARK="lilac • dark"
+LIGHT="lilac • light"
+
+get_macos_appearance() {
+    defaults read -g AppleInterfaceStyle 2>/dev/null
+}
+
+choose_theme() {
+    if [ "$1" = "dark" ]; then
+        echo "$DARK"
+    elif [ "$1" = "light" ]; then
+        echo "$LIGHT"
+    else
+        # Follow macOS system appearance
+        if [ "$(get_macos_appearance)" = "Dark" ]; then
+            echo "$DARK"
+        else
+            echo "$LIGHT"
+        fi
+    fi
+}
+
+apply_theme() {
+    local theme="$1"
+
+    # Set default and startup profiles
+    defaults write com.apple.Terminal "Default Window Settings" -string "$theme"
+    defaults write com.apple.Terminal "Startup Window Settings" -string "$theme"
+
+    # Apply to all open Terminal windows/tabs
+    osascript -e "
+        tell application \"Terminal\"
+            set targetSettings to settings set \"$theme\"
+            repeat with w in windows
+                repeat with t in tabs of w
+                    set current settings of t to targetSettings
+                end repeat
+            end repeat
+        end tell
+    " 2>/dev/null
+}
+
+theme=$(choose_theme "$1")
+apply_theme "$theme"
+echo "Applied: $theme"

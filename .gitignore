@@ -67,8 +67,28 @@
 !.config/zed/
 !.config/zed/settings.json
 
-# local/share directory
+!.config/thefuck/
+!.config/thefuck/settings.py
+
+
+
+# •  ~/.local/bin/terminal-theme-switcher  — switches the theme. By default it follows
+# your macOS appearance (light/dark mode). You can also force one with  terminal-theme-
+# switcher dark  or  light .
+# •  ~/Library/LaunchAgents/com.lilac.terminal-theme-switcher.plist  — a launchd agent
+# that runs the script at 7:00 AM (light) and 7:00 PM (dark), plus on login.
+
+# Since it reads macOS appearance, it will also match if you use the system's automatic
+# light/dark schedule. Edit the  Hour  values in the plist if you want different switch
+# times.
+
 !.local/
+
+!.local/bin/
+!.local/bin/terminal-theme-switcher
+
+# local/share directory
+
 !.local/share/
 !.local/share/mc/
 !.local/share/mc/syntax/
@@ -81,8 +101,23 @@
 !.ollama/
 !.ollama/config.json
 
-
 !Library/
+
+!Library/Application Support/
+!Library/Application Support/lazydocker/
+!Library/Application Support/lazydocker/config.yml
+
+!Library/Application Support/lazygit/
+!Library/Application Support/lazygit/config.yml
+
+!Library/Application Support/tera/
+!Library/Application Support/tera/config.yaml
+
+!Library/Application Support/tera/data/
+!Library/Application Support/tera/data/favorites/
+!Library/Application Support/tera/data/favorites/My-favorites.json
+
+
 !Library/Fonts/
 !Library/Fonts/Fira Code Medium Nerd Font Complete Mono Windows Compatible.ttf
 !Library/Fonts/Fira Code Light Nerd Font Complete Windows Compatible.ttf
@@ -133,6 +168,9 @@
 !Library/Fonts/UbuntuMono-B.ttf
 !Library/Fonts/Fira Code SemiBold Nerd Font Complete Windows Compatible.ttf
 
+!Library/LaunchAgents/
+!Library/LaunchAgents/com.lilac.terminal-theme-switcher.plist
+
 # Never track secrets
 .secrets
 .pgpass
@@ -140,3 +178,8 @@
 
 # OS junk
 .DS_Store
+
+
+# Library/Application Support/srss/urls.txt
+# .config/stormy/stormy.toml
+# .config/tera/favorite/sample.json

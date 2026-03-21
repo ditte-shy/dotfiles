@@ -1,0 +1,15 @@
+[
+  {
+    "stationuuid": "9aea4f9e-4170-4d8f-ad8c-67f2bfeaa9e0",
+    "name": "Nightride FM - Spacesynth",
+    "url_resolved": "https://stream.nightride.fm/spacesynth.mp3",
+    "tags": "space disco,spacesynth,vocoder",
+    "country": "Germany",
+    "countrycode": "DE",
+    "state": "",
+    "language": "",
+    "votes": 1748,
+    "codec": "MP3",
+    "bitrate": 320
+  }
+]
