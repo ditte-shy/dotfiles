@@ -20,8 +20,18 @@
 !.config/espanso/config/default.yml
 !.config/espanso/match/base.yml
 
+# local/share directory
+
+!.local/share/mc/syntax/
+!.local/share/mc/syntax/*
+
+!.local/share/mc/skins/
+!.local/share/mc/skins/*
+
 # Never track secrets
 .secrets
+.pgpass
+.ssh/*
 
 # OS junk
 .DS_Store
