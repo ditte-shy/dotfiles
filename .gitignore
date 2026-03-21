@@ -15,14 +15,9 @@
 !.config/mc/
 !.config/mc/**
 .config/mc/hotlist
-!.config/lazydocker/
 !.config/lazydocker/config.yml
-!.config/htop/
 !.config/htop/htoprc
-!.config/espanso/
-!.config/espanso/config/
 !.config/espanso/config/default.yml
-!.config/espanso/match/
 !.config/espanso/match/base.yml
 
 # Never track secrets
