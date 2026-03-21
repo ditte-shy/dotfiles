@@ -82,8 +82,56 @@
 !.ollama/config.json
 
 
-
-
+!Library/
+!Library/Fonts/
+!Library/Fonts/Fira Code Medium Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/Fira Code Light Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/Fira Code Retina Nerd Font Complete.ttf
+!Library/Fonts/Fira Code Regular Nerd Font Complete.ttf
+!Library/Fonts/monofur bold Nerd Font Complete.ttf
+!Library/Fonts/Fira Code Regular Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/Fira Code Bold Nerd Font Complete.ttf
+!Library/Fonts/Fira Code Bold Nerd Font Complete Mono.ttf
+!Library/Fonts/Fira Code Bold Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/Fira Code Light Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/Fira Code Light Nerd Font Complete.ttf
+!Library/Fonts/Fira Code Bold Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/Fira Code SemiBold Nerd Font Complete.ttf
+!Library/Fonts/SyneMono-Regular.ttf
+!Library/Fonts/monofur Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/Ubuntu-L.ttf
+!Library/Fonts/UbuntuMono-BI.ttf
+!Library/Fonts/monofur Nerd Font Complete.ttf
+!Library/Fonts/Ubuntu-BI.ttf
+!Library/Fonts/monofur italic Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/Fira Code Light Nerd Font Complete Mono.ttf
+!Library/Fonts/Ubuntu-MI.ttf
+!Library/Fonts/monofur bold Nerd Font Complete Mono.ttf
+!Library/Fonts/monofur italic Nerd Font Complete Mono.ttf
+!Library/Fonts/monofur Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/Fira Code Retina Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/Ubuntu-R.ttf
+!Library/Fonts/Fira Code Retina Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/monofur italic Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/Fira Code SemiBold Nerd Font Complete Mono.ttf
+!Library/Fonts/Ubuntu-LI.ttf
+!Library/Fonts/Fira Code Retina Nerd Font Complete Mono.ttf
+!Library/Fonts/Ubuntu-B.ttf
+!Library/Fonts/Fira Code Regular Nerd Font Complete Mono.ttf
+!Library/Fonts/Ubuntu-C.ttf
+!Library/Fonts/Fira Code SemiBold Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/UbuntuMono-RI.ttf
+!Library/Fonts/Fira Code Medium Nerd Font Complete Mono.ttf
+!Library/Fonts/Fira Code Regular Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/UbuntuMono-R.ttf
+!Library/Fonts/Fira Code Medium Nerd Font Complete.ttf
+!Library/Fonts/Fira Code Medium Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/monofur bold Nerd Font Complete Mono Windows Compatible.ttf
+!Library/Fonts/Ubuntu-RI.ttf
+!Library/Fonts/monofur italic Nerd Font Complete.ttf
+!Library/Fonts/monofur bold Nerd Font Complete Windows Compatible.ttf
+!Library/Fonts/UbuntuMono-B.ttf
+!Library/Fonts/Fira Code SemiBold Nerd Font Complete Windows Compatible.ttf
 
 # Never track secrets
 .secrets
