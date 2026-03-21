@@ -171,6 +171,15 @@
 !Library/LaunchAgents/
 !Library/LaunchAgents/com.lilac.terminal-theme-switcher.plist
 
+!Library/Preferences/
+!Library/Preferences/glow/
+!Library/Preferences/glow/glow.yml
+
+!Library/Preferences/co.gitup.mac.plist
+!Library/Preferences/app.kaleidoscope.v3.plist
+!Library/Preferences/com.superultra.Homerow.plist
+!Library/Preferences/com.tinyapp.TablePlus.plist
+
 # Never track secrets
 .secrets
 .pgpass
