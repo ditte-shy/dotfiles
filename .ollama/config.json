@@ -1,0 +1,7 @@
+{
+  "threads": 12, // Adjust based on your M3 capabilities
+  "use_gpu": true, // Enable GPU usage
+  "max_memory": 36000, // Set maximum memory allocation (in MB)
+  "model": "gpt-oss:20b", // Specify the model you want to use
+  "performance_mode": true // Enable performance optimizations
+}

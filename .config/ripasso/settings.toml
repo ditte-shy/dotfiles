@@ -1,0 +1,21 @@
+shadow = false
+borders = "outset"
+
+[colors]
+
+#background = "light white"
+#view = "light white"
+#
+## Text
+#primary = "black"
+#secondary = "green"
+#tertiary = "white"
+#
+#title_primary = "white"
+#highlight = "yellow"
+#highlight_inactive = "yellow"
+
+[stores]
+    [stores.default]
+    path = "${HOME}/.password-store"
+    style_path = "${HOME}/.config/ripasso/settings.toml"

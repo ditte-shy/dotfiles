@@ -1,0 +1,11 @@
+syntax: glob
+
+*~
+.DS_Store
+.env
+__pycache__
+*.pyc
+node_modules
+.gitkeep
+package-lock.json
+udemy-coockie.txt

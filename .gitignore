@@ -8,6 +8,19 @@
 !.bash_aliases
 !.bash_functions
 
+!.wgetrc
+!.npmrc
+!.nanorc
+!.lynxrc
+!.editorconfig
+!.eslintrc.js
+!.curlrc
+!.ansible.cfg
+!.hgignore_global
+!.gitignore_global
+!.psqlrc
+!.selected_editor
+
 # Config directory
 !.config/
 !.config/terminal/
@@ -27,6 +40,33 @@
 !.config/espanso/match/
 !.config/espanso/match/base.yml
 
+!.config/btop/
+!.config/btop/btop.conf
+
+!.config/cheat/
+!.config/cheat/conf.yml
+
+!.config/lazygit/
+!.config/lazygit/config.yml
+
+!.config/micro/
+!.config/micro/settings.json
+
+!.config/neofetch/
+!.config/neofetch/config.conf
+
+!.config/crush/
+!.config/crush/crush.json
+
+!.config/opencode/
+!.config/opencode/config.json
+
+!.config/ripasso/
+!.config/ripasso/settings.toml
+
+!.config/zed/
+!.config/zed/settings.json
+
 # local/share directory
 !.local/
 !.local/share/
@@ -35,6 +75,15 @@
 !.local/share/mc/syntax/*
 !.local/share/mc/skins/
 !.local/share/mc/skins/*
+
+
+
+!.ollama/
+!.ollama/config.json
+
+
+
+
 
 # Never track secrets
 .secrets

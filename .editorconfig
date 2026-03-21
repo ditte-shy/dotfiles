@@ -1,0 +1,122 @@
+#                                                          .;;,
+#                                     .,.               .,;;;;;,
+#                                    ;;;;;;;,,        ,;;%%%%%;;
+#                                     `;;;%%%%;;,.  ,;;%%;;%%%;;
+#                                       `;%%;;%%%;;,;;%%%%%%%;;'
+#                                         `;;%%;;%:,;%%%%%;;%%;;,
+#                                            `;;%%%,;%%%%%%%%%;;;
+#                                               `;:%%%%%%;;%%;;;'
+#           ..,,,.                                 .:::::::.
+#        .;;;;;;;;;;,.                                  s.
+#        `;;;;;;;;;;;;;,                               ,SSSs.
+#          `:.:.:.:.:.:.:.                            ,SSSSSSs.
+#           .;;;;;;;;;;;;;::,                        ,SSSSSSSSS,
+#          ;;;;;;;;;;;;;;;;:::%,                    ,SS%;SSSSSSsS
+#         ;;;;;;,:,:::::::;::::%%,                  SS%;SSSSSSsSS
+#         ;;;;;,::a@@@@@@a::%%%%%%%,.   ...         SS%;SSSSSSSS'
+#         `::::::@@@@@@@@@@@a;%%%%%%%%%'  #;        `SS%;SSSSS'
+#  .,sSSSSs;%%,::@@@@@@;;' #`@@a;%%%%%'   ,'          `S%;SS'
+#sSSSSSSSSSs;%%%,:@@@@a;;   .@@@a;%%sSSSS'           .%%%;SS,
+#`SSSSSSSSSSSs;%%%,:@@@a;;;;@@@;%%sSSSS'        ..,,%%%;SSSSSSs.
+#  `SSSSSSSSSSSSs;%%,%%%%%%%%%%%SSSS'     ..,,%;sSSS;%;SSSSSSSSs.
+#     `SSSSSSSSSSS%;%;sSSSS;""""   ..,,%sSSSS;;SSSS%%%;SSSSSSSSSS.
+#         """""" %%;SSSSSS;;%..,,sSSS;%SSSSS;%;%%%;%%%%;SSSSSS;SSS.
+#                `;SSSSS;;%%%%%;SSSS;%%;%;%;sSSS;%%%%%%%;SSSSSS;SSS
+#                 ;SSS;;%%%%%%%%;%;%sSSSS%;SSS;%%%%%%%%%;SSSSSS;SSS
+#                 `S;;%%%%%%%%%%%%%SSSSS;%%%;%%%%%%%%%%%;SSSSSS;SSS
+#                  ;SS;%%%%%%%%%%%%;%;%;%%;%%%%%%%%%%%%;SSSSSS;SSS'
+#                  SS;%%%%%%%%%%%%%%%%%%%;%%%%%%%%%%%;SSSSSS;SSS'
+#                  SS;%%%%%%%%%%%%%%%%%%;%%%%%%%%%%%;SSSSS;SSS'
+#                  SS;%%%%%%%%%%%%%;sSSs;%%%%%%%%;SSSSSS;SSSS
+#                  `SS;%%%%%%%%%%%%%%;SS;%%%%%%;SSSSSS;SSSS'
+#                   `S;%%%%%%%%%%%%%%%;S;%%%%%;SSSS;SSSSS%
+#                    `S;%;%%%%%%%%%%%'   `%%%%;SSS;SSSSSS%.
+#                  ,S;%%%%%%%%%%;'      `%%%%%;S   `SSSSs%,.
+#                  ,%%%%%%%%%%;%;'         `%;%%%;     `SSSs;%%,.
+#               ,%%%%%%;;;%;;%;'           .%%;%%%       `SSSSs;%%.
+#            ,%%%%%' .%;%;%;'             ,%%;%%%'         `SSSS;%%
+#          ,%%%%'   .%%%%'              ,%%%%%'             `SSs%%'
+#        ,%%%%'    .%%%'              ,%%%%'                ,%%%'
+#      ,%%%%'     .%%%              ,%%%%'                 ,%%%'
+#    ,%%%%'      .%%%'            ,%%%%'                  ,%%%'
+#  ,%%%%'        %%%%           ,%%%'                    ,%%%%
+#  %%%%'       .:::::         ,%%%'                      %%%%'
+#.:::::        :::::'       ,%%%'                       ,%%%%
+#:::::'                   ,%%%%'                        %%%%%
+#                        %%%%%'                         %%%%%
+#                      .::::::                        .::::::
+#                      ::::::'                        ::::::'
+
+# -------------------------------------
+#
+# ~/.editorconfig in a nice manner
+#
+# -------------------------------------
+
+
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top - most EditorConfig file
+root = true
+
+####################################################################
+
+# Unix - style newlines with a newline ending every file
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
+####################################################################
+
+# [*.{js,py}]
+
+####################################################################
+
+# [*.py]
+
+####################################################################
+
+[{m,M}akefile]
+indent_style = tab
+
+####################################################################
+
+[Makefile]
+indent_style = tab
+
+####################################################################
+
+# Indentation override for all JS under lib directory
+[lib/**.js]
+indent_size = 2
+
+####################################################################
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_size = 2
+
+####################################################################
+
+# [*.{sh,bash}]
+
+####################################################################
+
+shell_variant      = posix # like -ln=posix
+binary_next_line   = true  # like -bn
+switch_case_indent = true  # like -ci
+space_redirects    = true  # like -sr
+keep_padding       = true  # like -kp
+function_next_line = true  # like -fn
+never_split        = true  # like -ns
+
+####################################################################
+
+# Ignore the entire "third_party" directory.
+[third_party/**]
+ignore = true

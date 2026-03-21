@@ -1,0 +1,7 @@
+-- custom front-end to the normal editor
+\setenv PSQL_EDITOR /opt/homebrew/bin/micro
+
+-- declare an :expand variable to use as a macro (sort of)
+-- must be kept as a single long line
+
+\set expand ' \\set _tmpstruct `tempfile` \\setenv PSQL_TMP_STRUCT :_tmpstruct \\set QUIET on \\pset format csv \\x off \\pset tuples_only off \\o :_tmpstruct \\gdesc \\o \\pset format aligned \\set QUIET off \\e \\unset _tmpstruct'

@@ -58,6 +58,12 @@
 
 ####################################################################
 
+# How bash picks a login profile (first match wins):
+#
+# 1. ~/.bash_profile
+# 2. ~/.bash_login
+# 3. ~/.profile
+
 # .bash_profile is read and executed when Bash is invoked as an interactive
 # login shell, while .bashrc is executed for an interactive non-login shell.
 # Use .bash_profile to run commands that should run only once,
