@@ -54,6 +54,7 @@
 
 # Whitelist dotfiles
 !.gitignore
+!AGENTS.md
 !.bash_profile
 !.bashrc
 !.bash_aliases
