@@ -59,7 +59,28 @@ The repository is designed to be copied into `$HOME` on a Mac via `bootstrap.sh`
     ├── Containers/                   # CotEditor, TextEdit sandboxed prefs (plist)
     ├── Fonts/                        # Fira Code Nerd Font, monofur, Ubuntu, Syne Mono
     ├── LaunchAgents/                 # com.lilac.terminal-theme-switcher.plist
-    └── Preferences/                  # App plists (Terminal, GitUp, Kaleidoscope, etc.)
+    └── Preferences/                  # App and system plists:
+        ├── .GlobalPreferences.plist   #   System-wide (accent color, languages, dark mode)
+        ├── com.apple.dock.plist       #   Dock layout and hot corners
+        ├── com.apple.finder.plist     #   Finder view settings
+        ├── com.apple.HIToolbox.plist  #   Keyboard input sources (US + Russian)
+        ├── com.apple.symbolichotkeys.plist
+        ├── com.apple.AppleMultitouchMouse.plist
+        ├── com.apple.AppleMultitouchTrackpad.plist
+        ├── com.apple.driver.AppleBluetoothMultitouch.mouse.plist
+        ├── com.apple.driver.AppleBluetoothMultitouch.trackpad.plist
+        ├── com.apple.driver.AppleHIDMouse.plist
+        ├── com.apple.controlcenter.plist
+        ├── com.apple.menuextra.clock.plist
+        ├── com.apple.spaces.plist
+        ├── com.apple.wallpaper.plist
+        ├── com.adguard.mac.adguard.plist
+        ├── com.apple.Terminal.plist   #   Terminal.app themes and prefs
+        ├── co.gitup.mac.plist         #   GitUp
+        ├── app.kaleidoscope.v3.plist  #   Kaleidoscope
+        ├── com.superultra.Homerow.plist
+        ├── com.tinyapp.TablePlus.plist
+        └── glow/glow.yml             #   Glow markdown viewer
 ```
 
 ## Gitignore Strategy (Critical)
@@ -161,6 +182,7 @@ Executable scripts:
 
 - **Whitelist gitignore**: Forgetting to un-ignore a parent directory will silently prevent tracking a file. Always check `git status` after adding entries.
 - **Binary plists**: macOS `.plist` files in `Library/` are binary. Use `plutil -convert xml1` to make them human-readable before diffing, or `defaults read <path>` to inspect.
+- **Plist reload**: After copying plists into `~/Library/Preferences/`, run `killall cfprefsd` to flush the preferences cache, then restart affected processes (`killall Dock`, `killall Finder`, `killall SystemUIServer`, `killall ControlCenter`).
 - **ASCII art headers**: Each main bash file starts with a ~48-line decorative ASCII art block. Preserve it when editing. Don't remove or reformat it.
 - **Section dividers**: The bash files use triple rows of `#` characters (`####...`) as section dividers. Keep this visual style when adding new sections.
 - **Espanso has Russian snippets**: Some espanso triggers use Cyrillic (`:спс`, `:ок`). The repo has multilingual content.

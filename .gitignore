@@ -55,6 +55,7 @@
 # Whitelist dotfiles
 !.gitignore
 !AGENTS.md
+!README.md
 !bootstrap.sh
 !.bash_profile
 !.bashrc
@@ -236,6 +237,22 @@
 !Library/Preferences/com.tinyapp.TablePlus.plist
 
 !Library/Preferences/com.apple.Terminal.plist
+
+!Library/Preferences/.GlobalPreferences.plist
+!Library/Preferences/com.apple.finder.plist
+!Library/Preferences/com.apple.dock.plist
+!Library/Preferences/com.apple.HIToolbox.plist
+!Library/Preferences/com.apple.symbolichotkeys.plist
+!Library/Preferences/com.apple.AppleMultitouchMouse.plist
+!Library/Preferences/com.apple.AppleMultitouchTrackpad.plist
+!Library/Preferences/com.apple.driver.AppleBluetoothMultitouch.mouse.plist
+!Library/Preferences/com.apple.driver.AppleBluetoothMultitouch.trackpad.plist
+!Library/Preferences/com.apple.driver.AppleHIDMouse.plist
+!Library/Preferences/com.apple.controlcenter.plist
+!Library/Preferences/com.apple.menuextra.clock.plist
+!Library/Preferences/com.apple.spaces.plist
+!Library/Preferences/com.apple.wallpaper.plist
+!Library/Preferences/com.adguard.mac.adguard.plist
 
 !Library/Containers/
 
