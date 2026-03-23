@@ -6,12 +6,13 @@ Guide for AI agents working in this repository.
 
 Personal **dotfiles** repository for a macOS system (Apple Silicon / Homebrew). It tracks shell configuration, CLI tool settings, fonts, app preferences, LaunchAgents, and utility scripts. There is no application source code, no build system, and no test suite.
 
-The repository is designed to be symlinked or copied into `$HOME` on a Mac.
+The repository is designed to be copied into `$HOME` on a Mac via `bootstrap.sh`.
 
 ## Repository Structure
 
 ```
 .                           # Root = $HOME layout
+├── bootstrap.sh            # Applies all dotfiles to $HOME via rsync
 ├── .bash_profile           # Login shell: env vars, PATH, colors, tool setup
 ├── .bashrc                 # Interactive shell: prompt, history, completions, fzf
 ├── .bash_aliases           # Shell aliases (git, ls, python, etc.)
@@ -130,9 +131,10 @@ This is a configuration-only repository. There are:
 - No CI/CD pipelines
 - No Makefile
 
-The only executable scripts are in `.local/bin/`:
-- `terminal-theme-switcher` — switches macOS Terminal.app between dark/light themes
-- `metadata_never_index.sh` — prevents Spotlight from indexing junk directories
+Executable scripts:
+- `bootstrap.sh` — rsync all dotfiles from the repo into `$HOME` (supports `--dry-run`)
+- `.local/bin/terminal-theme-switcher` — switches macOS Terminal.app between dark/light themes
+- `.local/bin/metadata_never_index.sh` — prevents Spotlight from indexing junk directories
 
 ## Common Tasks
 
