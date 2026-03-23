@@ -187,13 +187,20 @@
 !Library/Preferences/com.apple.Terminal.plist
 
 !Library/Containers/
+
 !Library/Containers/com.coteditor.CotEditor/
 !Library/Containers/com.coteditor.CotEditor/Data/
 !Library/Containers/com.coteditor.CotEditor/Data/Library/
 !Library/Containers/com.coteditor.CotEditor/Data/Library/Preferences/
 !Library/Containers/com.coteditor.CotEditor/Data/Library/Preferences/com.coteditor.CotEditor.plist
 
-# Never track secrets
+!Library/Containers/com.apple.TextEdit/
+!Library/Containers/com.apple.TextEdit/Data/
+!Library/Containers/com.apple.TextEdit/Data/Library/
+!Library/Containers/com.apple.TextEdit/Data/Library/Preferences/
+!Library/Containers/com.apple.TextEdit/Data/Library/Preferences/com.apple.TextEdit.plist
+
+#  Never track secrets
 .secrets
 .pgpass
 .ssh/*
