@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>Label</key>
     <string>com.lilac.terminal-theme-switcher</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/lilac/.local/bin/terminal-theme-switcher</string>
+        <string>${HOME}/.local/bin/terminal-theme-switcher</string>
     </array>
     <key>StartCalendarInterval</key>
     <array>
@@ -25,6 +25,6 @@
         </dict>
     </array>
     <key>RunAtLoad</key>
-    <true/>
+    <true />
 </dict>
 </plist>
