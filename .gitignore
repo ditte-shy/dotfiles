@@ -87,6 +87,8 @@
 !.local/bin/
 !.local/bin/terminal-theme-switcher
 
+!.local/bin/metadata_never_index.sh
+
 # local/share directory
 
 !.local/share/
@@ -171,6 +173,8 @@
 !Library/LaunchAgents/
 !Library/LaunchAgents/com.lilac.terminal-theme-switcher.plist
 
+
+
 !Library/Preferences/
 !Library/Preferences/glow/
 !Library/Preferences/glow/glow.yml
@@ -179,6 +183,15 @@
 !Library/Preferences/app.kaleidoscope.v3.plist
 !Library/Preferences/com.superultra.Homerow.plist
 !Library/Preferences/com.tinyapp.TablePlus.plist
+
+!Library/Preferences/com.apple.Terminal.plist
+
+!Library/Containers/
+!Library/Containers/com.coteditor.CotEditor/
+!Library/Containers/com.coteditor.CotEditor/Data/
+!Library/Containers/com.coteditor.CotEditor/Data/Library/
+!Library/Containers/com.coteditor.CotEditor/Data/Library/Preferences/
+!Library/Containers/com.coteditor.CotEditor/Data/Library/Preferences/com.coteditor.CotEditor.plist
 
 # Never track secrets
 .secrets
