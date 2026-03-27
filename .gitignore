@@ -124,7 +124,9 @@
 !.config/thefuck/
 !.config/thefuck/settings.py
 
-
+!.colima/
+!.colima/default/
+!.colima/default/colima.yaml
 
 # •  ~/.local/bin/terminal-theme-switcher  — switches the theme. By default it follows
 # your macOS appearance (light/dark mode). You can also force one with  terminal-theme-
@@ -180,43 +182,11 @@
 !Library/Fonts/SyneMono-Regular.ttf
 !Library/Fonts/Monofur-PK7og.ttf
 
-!Library/Fonts/Fira Code Medium Nerd Font Complete Mono Windows Compatible.ttf
-!Library/Fonts/Fira Code Light Nerd Font Complete Windows Compatible.ttf
-!Library/Fonts/Fira Code Retina Nerd Font Complete.ttf
-!Library/Fonts/Fira Code Regular Nerd Font Complete.ttf
-!Library/Fonts/Fira Code Regular Nerd Font Complete Windows Compatible.ttf
-!Library/Fonts/Fira Code Bold Nerd Font Complete.ttf
-!Library/Fonts/Fira Code Bold Nerd Font Complete Mono.ttf
-!Library/Fonts/Fira Code Bold Nerd Font Complete Mono Windows Compatible.ttf
-!Library/Fonts/Fira Code Light Nerd Font Complete Mono Windows Compatible.ttf
-!Library/Fonts/Fira Code Light Nerd Font Complete.ttf
-!Library/Fonts/Fira Code Bold Nerd Font Complete Windows Compatible.ttf
-!Library/Fonts/Fira Code SemiBold Nerd Font Complete.ttf
-!Library/Fonts/Fira Code Light Nerd Font Complete Mono.ttf
-!Library/Fonts/Fira Code Retina Nerd Font Complete Mono Windows Compatible.ttf
-!Library/Fonts/Fira Code Retina Nerd Font Complete Windows Compatible.ttf
-!Library/Fonts/Fira Code SemiBold Nerd Font Complete Mono.ttf
-!Library/Fonts/Fira Code Retina Nerd Font Complete Mono.ttf
-!Library/Fonts/Fira Code Regular Nerd Font Complete Mono.ttf
-!Library/Fonts/Fira Code SemiBold Nerd Font Complete Mono Windows Compatible.ttf
-!Library/Fonts/Fira Code Medium Nerd Font Complete Mono.ttf
-!Library/Fonts/Fira Code Regular Nerd Font Complete Mono Windows Compatible.ttf
-!Library/Fonts/Fira Code Medium Nerd Font Complete.ttf
-!Library/Fonts/Fira Code Medium Nerd Font Complete Windows Compatible.ttf
-!Library/Fonts/Fira Code SemiBold Nerd Font Complete Windows Compatible.ttf
-
 !Library/Fonts/Ubuntu-L.ttf
-!Library/Fonts/UbuntuMono-BI.ttf
-!Library/Fonts/Ubuntu-BI.ttf
-!Library/Fonts/Ubuntu-MI.ttf
 !Library/Fonts/Ubuntu-R.ttf
-!Library/Fonts/Ubuntu-LI.ttf
 !Library/Fonts/Ubuntu-B.ttf
 !Library/Fonts/Ubuntu-C.ttf
-!Library/Fonts/UbuntuMono-RI.ttf
 !Library/Fonts/UbuntuMono-R.ttf
-!Library/Fonts/Ubuntu-RI.ttf
-!Library/Fonts/UbuntuMono-B.ttf
 
 
 !.githooks/
