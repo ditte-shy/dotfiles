@@ -16,11 +16,12 @@ choose_theme() {
     elif [ "$1" = "light" ]; then
         echo "$LIGHT"
     else
-        # Follow macOS system appearance
-        if [ "$(get_macos_appearance)" = "Dark" ]; then
-            echo "$DARK"
+        local hour
+        hour=$(date +%H)
+        if [ "${hour}" -ge 19 ] || [ "${hour}" -lt 7 ]; then
+            echo "${DARK}"
         else
-            echo "$LIGHT"
+            echo "${LIGHT}"
         fi
     fi
 }
