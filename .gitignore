@@ -1,6 +1,8 @@
 # Ignore everything by default
 *
 
+!README.md
+
 # Whitelist dotfiles
 !.gitignore
 !.bash_profile
