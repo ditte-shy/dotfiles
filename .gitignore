@@ -88,6 +88,7 @@
 !.local/bin/terminal-theme-switcher
 
 !.local/bin/metadata_never_index.sh
+!.local/bin/plist-strip-volatile
 
 # local/share directory
 
@@ -169,6 +170,9 @@
 !Library/Fonts/monofur bold Nerd Font Complete Windows Compatible.ttf
 !Library/Fonts/UbuntuMono-B.ttf
 !Library/Fonts/Fira Code SemiBold Nerd Font Complete Windows Compatible.ttf
+
+!.githooks/
+!.githooks/pre-commit
 
 !Library/LaunchAgents/
 !Library/LaunchAgents/com.lilac.terminal-theme-switcher.plist

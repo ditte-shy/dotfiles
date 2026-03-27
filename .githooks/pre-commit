@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Pre-commit hook: strips volatile keys from staged binary plist files
+# so that window positions, timestamps, and UI state don't create noise.
+
+set -euo pipefail
+
+STRIP_CMD="$HOME/.local/bin/plist-strip-volatile"
+
+if [ ! -x "$STRIP_CMD" ]; then
+    echo "Warning: plist-strip-volatile not found, skipping plist cleanup" >&2
+    exit 0
+fi
+
+staged_plists=$(git diff --cached --name-only --diff-filter=ACM -- '*.plist' || true)
+
+if [ -z "$staged_plists" ]; then
+    exit 0
+fi
+
+for plist in $staged_plists; do
+    if file "$plist" | grep -q "binary"; then
+        echo "Stripping volatile keys from $plist"
+        "$STRIP_CMD" "$plist"
+        git add "$plist"
+    fi
+done

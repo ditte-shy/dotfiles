@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""
+Strips volatile keys from a binary plist file in-place.
+Used by the pre-commit hook to remove window positions, timestamps,
+and other frequently-changing keys that add noise to diffs.
+
+Usage: plist-strip-volatile <file.plist>
+"""
+
+import plistlib
+import re
+import subprocess
+import sys
+
+VOLATILE_PREFIXES = (
+    "NSWindow Frame ",
+    "NSSplitView Subview Frames ",
+    "NSToolbar Configuration ",
+    "NSOutlineView Items ",
+    "NSTableView ",
+    "NSStatusBar ",
+)
+
+VOLATILE_EXACT = {
+    "NSColorPanelMode",
+    "NSColorPickerPreferredRGBEntryMode",
+    "NSColorPickerSlidersDefaults",
+    "NSFontPanelAttributes",
+    "NSNavPanelExpandedSizeForOpenMode",
+    "NSNavPanelExpandedSizeForSaveMode",
+    "NSNavPanelExpandedStateForSaveMode",
+    "NSNavLastUserSetHideExtensionButtonState",
+    "NSOSPLastRootDirectory",
+    "NSUseAnimatedFocusRing",
+    "SULastCheckTime",
+    "SUHasLaunchedBefore",
+    "SUUpdateGroupIdentifier",
+    "SGTRecentFileSearches",
+    "TB Default Item Identifiers",
+    "TB Display Mode",
+    "TB Icon Size Mode",
+    "TB Is Shown",
+    "TB Item Identifiers",
+    "TB Size Mode",
+    "Window Groups",
+    "WindowList",
+    "WindowNumber",
+    "Startup Window Group",
+    "ScrollerStyle",
+    "TTAppPreferences Selected Tab",
+    "TTInspector Selected Pane",
+    "Tab Session Class ID",
+    "Tab Working Directory URL",
+    "TabSelected",
+    "lastPreferencesPaneIdentifier",
+    "selectedInspectorPaneIndex",
+    "RecentMatchedItems",
+    "RecentMatchedKeywords",
+    "RecentOpenedFavoriteGroups",
+    "RestoreRecentQueries",
+    "findHistory",
+    "replaceHistory",
+    "recentStyleNames",
+}
+
+
+def is_volatile(key):
+    if key in VOLATILE_EXACT:
+        return True
+    for prefix in VOLATILE_PREFIXES:
+        if key.startswith(prefix):
+            return True
+    return False
+
+
+def strip_dict(d):
+    keys_to_remove = [k for k in d if is_volatile(k)]
+    for k in keys_to_remove:
+        del d[k]
+    for k, v in d.items():
+        if isinstance(v, dict):
+            strip_dict(v)
+        elif isinstance(v, list):
+            for item in v:
+                if isinstance(item, dict):
+                    strip_dict(item)
+
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: plist-strip-volatile <file.plist>", file=sys.stderr)
+        sys.exit(1)
+
+    path = sys.argv[1]
+
+    result = subprocess.run(["file", path], capture_output=True, text=True)
+    if "XML" in result.stdout:
+        sys.exit(0)
+
+    with open(path, "rb") as f:
+        data = plistlib.load(f)
+
+    strip_dict(data)
+
+    with open(path, "wb") as f:
+        plistlib.dump(data, f, fmt=plistlib.FMT_BINARY)
+
+
+if __name__ == "__main__":
+    main()
