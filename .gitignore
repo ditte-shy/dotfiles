@@ -124,7 +124,9 @@
 !.config/thefuck/
 !.config/thefuck/settings.py
 
-
+!.colima/
+!.colima/default/
+!.colima/default/colima.yaml
 
 # •  ~/.local/bin/terminal-theme-switcher  — switches the theme. By default it follows
 # your macOS appearance (light/dark mode). You can also force one with  terminal-theme-
