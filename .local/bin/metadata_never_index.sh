@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────
 # metadata_never_index.sh — Prevent Spotlight from indexing junk dirs
 # ─────────────────────────────────────────────────────────────────────

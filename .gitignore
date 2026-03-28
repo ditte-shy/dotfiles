@@ -80,6 +80,7 @@
 !.shellcheckrc
 !.markdownlint.json
 !.aiexclude
+!.crush.json
 !.selected_editor
 
 # Config directory

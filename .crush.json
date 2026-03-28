@@ -1,0 +1,53 @@
+{
+    "$schema": "https://raw.githubusercontent.com/charmbracelet/crush/refs/heads/main/schema.json",
+    "options": {
+        "context_paths": [],
+        "initialize_as": "AGENTS.md",
+        "disable_metrics": true,
+        "auto_lsp": true,
+        "progress": true,
+        "attribution": {
+            "trailer_style": "none",
+            "generated_with": false
+        },
+        "tui": {
+            "diff_mode": "unified",
+            "compact_mode": true,
+            "transparent": false,
+            "completions": {
+                "max_depth": 6,
+                "max_items": 200
+            }
+        }
+    },
+    "lsp": {
+        "bash-language-server": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh", "bash"],
+            "root_markers": [".git"],
+            "timeout": 20
+        }
+    },
+    "permissions": {
+        "allowed_tools": [
+            "view",
+            "ls",
+            "grep",
+            "glob",
+            "fetch",
+            "lsp_references",
+            "lsp_diagnostics",
+            "sourcegraph"
+        ]
+    },
+    "tools": {
+        "ls": {
+            "max_depth": 4,
+            "max_items": 200
+        },
+        "grep": {
+            "timeout": 15000000000
+        }
+    }
+}

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Switches macOS Terminal.app theme between "lilac • dark" and "lilac • light"
 # based on time of day (or macOS appearance).

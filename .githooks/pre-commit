@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Pre-commit hook: strips volatile keys from staged binary plist files
 # so that window positions, timestamps, and UI state don't create noise.

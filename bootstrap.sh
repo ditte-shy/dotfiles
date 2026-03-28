@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────
 # bootstrap.sh — Apply dotfiles from this repo onto the current user
 # ─────────────────────────────────────────────────────────────────────
