@@ -52,4 +52,19 @@ echo ""
 rsync "${RSYNC_OPTS[@]}" -v "${REPO_DIR}/" "${TARGET}/"
 
 echo ""
+
+####################################################################
+### Set default shell to bash for the current user #################
+####################################################################
+
+CURRENT_SHELL="$(dscl . -read "/Users/${USER}" UserShell 2>/dev/null | awk '{print $2}')"
+if [[ "${CURRENT_SHELL}" != "/bin/bash" ]]; then
+    echo "Default shell is ${CURRENT_SHELL}, changing to /bin/bash ..."
+    chsh -s /bin/bash
+    echo "Default shell changed to /bin/bash."
+else
+    echo "Default shell is already /bin/bash."
+fi
+
+echo ""
 echo "Done."

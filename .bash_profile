@@ -132,10 +132,12 @@ export LSCOLORS="gxDxFxdxCxExExhbadgxgx"
 ####################################################################
 
 export NVM_DIR="${HOME}/.nvm"
-# shellcheck disable=SC1091
-[[ -s "${NVM_DIR}/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh"
-# shellcheck disable=SC1091
-[[ -s "${NVM_DIR}/bash_completion" ]] && \. "${NVM_DIR}/bash_completion"
+if [[ -d "${NVM_DIR}" ]]; then
+    # shellcheck disable=SC1091
+    [[ -s "${NVM_DIR}/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh"
+    # shellcheck disable=SC1091
+    [[ -s "${NVM_DIR}/bash_completion" ]] && \. "${NVM_DIR}/bash_completion"
+fi
 
 ####################################################################
 ####################################################################
@@ -190,6 +192,9 @@ fi
 export PYTHONWARNINGS="ignore::DeprecationWarning"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 export PYENV_ROOT="${HOME}/.pyenv"
+if [[ -d "${PYENV_ROOT}/bin" ]]; then
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+fi
 
 ####################################################################
 ####################################################################
@@ -199,7 +204,9 @@ export PYENV_ROOT="${HOME}/.pyenv"
 ####################################################################
 ####################################################################
 
-export PATH="${HOMEBREW_PREFIX}/opt/libpq/bin:${PATH}"
+if [[ -d "${HOMEBREW_PREFIX}/opt/libpq/bin" ]]; then
+    export PATH="${HOMEBREW_PREFIX}/opt/libpq/bin:${PATH}"
+fi
 export PGPASSFILE="${HOME}/.pgpass"
 
 ####################################################################
@@ -210,7 +217,9 @@ export PGPASSFILE="${HOME}/.pgpass"
 ####################################################################
 ####################################################################
 
-export PATH="${HOME}/.local/share/google-cloud-sdk/bin:${PATH}"
+if [[ -d "${HOME}/.local/share/google-cloud-sdk/bin" ]]; then
+    export PATH="${HOME}/.local/share/google-cloud-sdk/bin:${PATH}"
+fi
 
 ####################################################################
 ####################################################################
@@ -244,14 +253,14 @@ fi
 ####################################################################
 ####################################################################
 
-export PATH="/opt/homebrew/opt/mysql-client/bin:${PATH}"
-export PATH="/opt/local/bin:/opt/local/sbin:${PATH}"
-export PATH="${PATH}:${HOME}/.lmstudio/bin"
-export PATH="${PATH}:${HOME}/go/bin"
+[[ -d "/opt/homebrew/opt/mysql-client/bin" ]] && export PATH="/opt/homebrew/opt/mysql-client/bin:${PATH}"
+[[ -d "/opt/local/bin" ]] && export PATH="/opt/local/bin:/opt/local/sbin:${PATH}"
+[[ -d "${HOME}/.lmstudio/bin" ]] && export PATH="${PATH}:${HOME}/.lmstudio/bin"
+[[ -d "${HOME}/go/bin" ]] && export PATH="${PATH}:${HOME}/go/bin"
 
 # bun
 export BUN_INSTALL="${HOME}/.bun"
-export PATH="${BUN_INSTALL}/bin:${PATH}"
+[[ -d "${BUN_INSTALL}/bin" ]] && export PATH="${BUN_INSTALL}/bin:${PATH}"
 
 ####################################################################
 

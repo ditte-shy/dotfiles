@@ -17,6 +17,8 @@ The repository is designed to be copied into `$HOME` on a Mac via `bootstrap.sh`
 ├── .bashrc                 # Interactive shell: prompt, history, completions, fzf
 ├── .bash_aliases           # Shell aliases (git, ls, python, etc.)
 ├── .bash_functions         # Shell functions (printTable, sqlite2csv, gi)
+├── .zprofile               # Zsh login shell: env vars, PATH (mirrors .bash_profile)
+├── .zshrc                  # Zsh interactive shell: prompt, history, completions, fzf
 ├── .editorconfig           # EditorConfig (spaces, indent 4, LF)
 ├── .eslintrc.js            # ESLint defaults (indent 4, single quotes, semicolons)
 ├── .gitignore              # Whitelist-based: ignores everything, then un-ignores tracked files
@@ -129,7 +131,7 @@ The dotfiles configure these tools (all installed via Homebrew on macOS):
 
 | Category         | Tools                                                 |
 |------------------|-------------------------------------------------------|
-| Shell            | bash, fzf, thefuck                                    |
+| Shell            | bash, zsh, fzf, thefuck                               |
 | Editors          | micro, nano, Zed, Sublime Text                        |
 | Git TUI          | lazygit                                               |
 | Docker TUI       | lazydocker                                            |

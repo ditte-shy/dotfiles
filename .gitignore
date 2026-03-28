@@ -61,6 +61,8 @@
 !.bashrc
 !.bash_aliases
 !.bash_functions
+!.zprofile
+!.zshrc
 
 !.wgetrc
 !.npmrc
