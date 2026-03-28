@@ -57,6 +57,7 @@
 !AGENTS.md
 !README.md
 !bootstrap.sh
+!Brewfile
 !.bash_profile
 !.bashrc
 !.bash_aliases
@@ -75,6 +76,10 @@
 !.hgignore_global
 !.gitignore_global
 !.psqlrc
+!.prettierrc
+!.shellcheckrc
+!.markdownlint.json
+!.aiexclude
 !.selected_editor
 
 # Config directory
@@ -145,6 +150,7 @@
 !.local/bin/
 !.local/bin/terminal-theme-switcher
 
+!.local/bin/init-aiexclude
 !.local/bin/metadata_never_index.sh
 !.local/bin/plist-strip-volatile
 

@@ -47,56 +47,67 @@
 #                      .::::::                        .::::::
 #                      ::::::'                        ::::::'
 
-# Added by my hand
-*autosave*
+####################################################################
+#  AI
+####################################################################
 
+.crush/
 
-# General
+####################################################################
+#  macOS
+####################################################################
+
 .DS_Store
+**/.DS_Store
 .AppleDouble
 .LSOverride
-
-# Icon must end with two \r
+.metadata_never_index
+.Spotlight-V100
+.Trashes
+._*
 Icon
 
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
-.Spotlight-V100
 .TemporaryItems
-.Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
-# Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
 
-SublimeText
+####################################################################
+#  Windows
+####################################################################
 
-# Cache files for Sublime Text
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# Workspace files are user-specific
+####################################################################
+#  Linux
+####################################################################
+
+*~
+
+####################################################################
+#  IDEs & Editors
+####################################################################
+
+.code-workspace
+.idea/
+*.iml
+out/
+.project
+.classpath
+.settings/
+
 *.sublime-workspace
-
-# Project files should be checked into the repository, unless a significant
-# proportion of contributors will probably not be using Sublime Text
-# *.sublime-project
-
-# SFTP configuration file
+*.sublime-project
 sftp-config.json
-
-# Package control specific files
 Package Control.last-run
 Package Control.ca-list
 Package Control.ca-bundle
@@ -107,19 +118,175 @@ Package Control.merged-ca-bundle
 Package Control.user-ca-bundle
 oscrypto-ca-bundle.crt
 bh_unicode_properties.cache
-
-# Sublime-github package stores a github token in this file
-# https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
 
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+####################################################################
+#  Runtime & Build Artifacts
+####################################################################
+
+node_modules/
+dist/
+build/
+bin/
+.next/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+ENV/
+env/
+.eggs/
+*.egg-info/
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+*autosave*
+
+####################################################################
+#  Go
+####################################################################
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+.gobin/
+
+####################################################################
+#  Environment & Secrets
+####################################################################
+
 .env
-__pycache__
-*.pyc
-node_modules
-.gitkeep
-package-lock.json
-udemy-coockie.txt
+.env.local
+.env.*.local
+.env.docker
+.env.develop
+.env.staging
+.env.product
+.secrets.env
 
+####################################################################
+#  SSL/TLS certificates
+####################################################################
 
+*.pem
+*.key
+*.crt
+*.cer
 
-**/.DS_Store
+####################################################################
+#  Logs & Temp
+####################################################################
+
+*.log
+logs/*
+!logs/.gitkeep
+*.tmp
+tmp/
+*.pid
+*.swp
+*.bak*
+*.backup
+
+####################################################################
+#  Binary & Compiled
+####################################################################
+
+*.o
+*.a
+*.lib
+*.obj
+*.class
+
+####################################################################
+#  Archives
+####################################################################
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.tar.bz2
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+
+####################################################################
+#  Documents & Media
+####################################################################
+
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.pdf
+*.iso
+*.img
+*.dmg
+
+####################################################################
+#  Installers & Packages
+####################################################################
+
+*.msi
+*.deb
+*.rpm
+*.pkg
+
+####################################################################
+#  Java
+####################################################################
+
+*.jar
+*.war
+*.ear
+
+####################################################################
+#  Databases
+####################################################################
+
+*.sqlite
+*.sqlite3
+*.db
+
+####################################################################
+#  Images
+####################################################################
+
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+
+####################################################################
+#  Audio / Video
+####################################################################
+
+*.mp3
+*.mpeg4
+
+####################################################################
+#  Linting
+####################################################################
+
+.lintignore-backups/
