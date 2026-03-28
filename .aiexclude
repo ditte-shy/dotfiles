@@ -1,0 +1,133 @@
+# .aiexclude
+#
+# AI context exclusion for the HOME DIRECTORY (~/)
+#
+# Prevents AI agents from crawling into caches, runtimes, cloud state,
+# credentials, and user data when operating from $HOME.
+#
+# This is the SINGLE SOURCE OF TRUTH for all AI ignore files.
+# Run `init-aiexclude --sync` to regenerate tool-specific copies:
+#   .geminiignore, .cursorignore, .codeiumignore, .aiignore, .agentignore
+
+# ============================================================================
+# User directories — personal data, not code
+# ============================================================================
+
+Applications/
+Books/
+Desktop/
+Documents/
+Downloads/
+GIS/
+iCloud Drive*/
+Library/
+Movies/
+Music/
+Pictures/
+processing/
+Public/
+Snippets/
+
+# ============================================================================
+# Projects — each has its own .aiexclude / .gitignore
+# ============================================================================
+
+VCS/
+app/
+
+# ============================================================================
+# Language runtimes & package managers
+# ============================================================================
+
+.bun/
+.cargo/
+.gem/
+.npm/
+.nvm/
+.nx/
+go/
+
+# ============================================================================
+# Cloud & infrastructure state
+# ============================================================================
+
+.ansible/
+.aws/
+.azcopy/
+.azure/
+.docker/
+.kube/
+.minikube/
+.colima/
+.pulumi/
+
+# ============================================================================
+# AI / LLM tool caches
+# ============================================================================
+
+.crush/
+.copilot/
+.cursor/
+.claude-server-commander/
+.diffusionbee/
+.hf-cli/
+.lmstudio/
+.next-devtools-mcp/
+.openclaw/
+.storybook/
+
+# ============================================================================
+# Application caches & data
+# ============================================================================
+
+.cache/
+.Trash/
+.bash_sessions/
+.dbclient/
+.gdal/
+.gnupg/
+.gnupg_pre_2.1/
+.grass8/
+.idlerc/
+.lazyssh/
+.matplotlib/
+.mysqlsh/
+.net/
+.newsboat/
+.ServiceHub/
+.swiftpm/
+.tldrc/
+.vscode/
+.xxh/
+.IdentityService/
+.password-store/
+
+# LLM models (multi-GB)
+.ollama/models/
+
+# ============================================================================
+# Credentials & secrets — NEVER index
+# ============================================================================
+
+.ssh/
+.secrets
+.pgpass
+.gnupg/
+.password-store/
+
+# ============================================================================
+# Common junk patterns
+# ============================================================================
+
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+.DS_Store
+._*
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
