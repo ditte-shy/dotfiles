@@ -1,0 +1,21 @@
+# ShellCheck configuration for NextMariner project
+# https://github.com/koalaman/shellcheck/wiki/Directive
+#
+# ZERO TOLERANCE POLICY: No disable directives allowed.
+# All shellcheck rules are enforced. Fix the code, never suppress the linter.
+# This applies to this file AND to inline `# shellcheck disable=` comments.
+
+# Enable all optional checks
+enable=all
+
+# Shell dialect to assume (sh, bash, dash, ksh)
+shell=bash
+
+# Minimum severity level (error, warning, info, style)
+severity=style
+
+# Source path for shellcheck to follow
+source-path=SCRIPTDIR
+
+# External sources that shellcheck should assume exist
+external-sources=true
