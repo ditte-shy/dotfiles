@@ -1,0 +1,120 @@
+# ─── Identity ─────────────────────────────────────────────
+
+[user]
+	name = Ditte Shy
+	email = ditte@engineer.company
+
+# ─── Core ─────────────────────────────────────────────────
+
+[init]
+	defaultBranch = main
+
+[core]
+	excludesfile = ~/.gitignore_global
+	hooksPath = .githooks
+	editor = zed --wait
+	pager = diff-so-fancy | less --tabs=4 -RF
+
+[credential]
+	helper = osxkeychain
+
+# ─── Branches & Remotes ──────────────────────────────────
+
+[fetch]
+	prune = true
+
+[pull]
+	rebase = false
+
+[push]
+	default = current
+	autoSetupRemote = true
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = -version:refname
+
+# ─── Diffs & Merges ──────────────────────────────────────
+
+[diff]
+	tool = Kaleidoscope
+	algorithm = histogram
+
+[difftool]
+	prompt = false
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+	tool = Kaleidoscope
+	conflictStyle = zdiff3
+
+[mergetool]
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
+[rerere]
+	enabled = true
+
+[rebase]
+	autoStash = true
+
+# ─── Search ──────────────────────────────────────────────
+
+[grep]
+	extendRegexp = true
+	lineNumber = true
+
+# ─── Colors (diff-so-fancy) ──────────────────────────────
+
+[color]
+	ui = true
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[interactive]
+	diffFilter = diff-so-fancy --patch
+
+[pager]
+	diff = diff-so-fancy | less --tabs=4 -RFXS
+
+# ─── Log & Display ───────────────────────────────────────
+
+[log]
+	date = iso
+
+# ─── Aliases ─────────────────────────────────────────────
+
+[alias]
+	tree  = log --oneline --graph --decorate --all
+	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%h%C(reset) - %C(magenta)(%ar)%C(reset) %C(normal)%s%C(reset) %C(white)- %an%C(reset)%C(bold green)%d%C(reset)' --all
+	hist  = log --pretty=format:'%C(yellow)%h %C(red)%ad %C(cyan)%aN%C(reset) | %s%C(blue)%d%C(reset)' --graph --date=short
+	xlog  = !git log --pretty=format:'%C(bold yellow)%h%C(reset)|%C(magenta)%ad%C(reset)|%C(white)%an%C(reset)|%C(bold green)%d %C(reset)%s' --date=format-local:'%Y-%m-%d %H:%M:%S' --color=always | column -ts'|' | less -r
+	dsf   = diff --color
+
+# ─── LFS ─────────────────────────────────────────────────
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

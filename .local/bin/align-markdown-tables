@@ -1,0 +1,224 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# align-markdown-tables — Align markdown table columns
+#
+# Usage:
+#   align-markdown-tables [OPTIONS] [FILES...]
+#
+# Options:
+#   -c, --check    Check only, exit 1 if tables are unaligned
+#   -a, --all      Process all tracked *.md files (git ls-files)
+#   -h, --help     Show this help message
+#
+# Examples:
+#   align-markdown-tables README.md
+#   align-markdown-tables --all
+#   align-markdown-tables --check --all
+
+# ── Escaped-pipe handling ─────────────────────────────────────
+
+ESCAPED_PIPE=$'\x01EPIPE\x01'
+
+split_table_row() {
+    local raw="${1}"
+    local safe="${raw//\\|/${ESCAPED_PIPE}}"
+    local stripped="${safe#"${safe%%[![:space:]]*}"}"
+    local trimmed="${stripped#|}"
+    trimmed="${trimmed%|}"
+    IFS='|' read -ra _cells <<< "${trimmed}"
+    local -a restored=()
+    for c in "${_cells[@]}"; do
+        c="${c//${ESCAPED_PIPE}/\\|}"
+        c="$(echo "${c}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+        restored+=("${c}")
+    done
+    _cells=("${restored[@]}")
+}
+
+# ── Core: align one table (stdin → stdout) ───────────────────
+
+align_table() {
+    local -a lines=()
+    while IFS= read -r line; do
+        lines+=("${line}")
+    done
+
+    if [[ ${#lines[@]} -lt 2 ]]; then
+        printf '%s\n' "${lines[@]}"
+        return
+    fi
+
+    local indent=""
+    if [[ "${lines[0]}" =~ ^([[:space:]]+)\| ]]; then
+        indent="${BASH_REMATCH[1]}"
+    fi
+
+    local num_cols=0
+    for line in "${lines[@]}"; do
+        split_table_row "${line}"
+        local n=${#_cells[@]}
+        if [[ ${n} -gt ${num_cols} ]]; then
+            num_cols=${n}
+        fi
+    done
+
+    local -a max_w=()
+    for ((c = 0; c < num_cols; c++)); do
+        max_w+=("3")
+    done
+
+    for line in "${lines[@]}"; do
+        split_table_row "${line}"
+        local col=0
+        for cell in "${_cells[@]}"; do
+            if [[ ${#cell} -gt ${max_w[col]:-0} ]]; then
+                max_w[col]=${#cell}
+            fi
+            col=$((col + 1))
+        done
+    done
+
+    local row_idx=0
+    for line in "${lines[@]}"; do
+        split_table_row "${line}"
+        local new_line="|"
+        local col=0
+
+        for cell in "${_cells[@]}"; do
+            local width=${max_w[col]}
+
+            if [[ ${row_idx} -eq 1 ]]; then
+                local left=0 right=0
+                local s="${cell}"
+                [[ "${s}" == :* ]] && left=1 && s="${s#:}"
+                [[ "${s}" == *: ]] && right=1 && s="${s%:}"
+                local dc=$((width - left - right))
+                [[ ${dc} -lt 1 ]] && dc=1
+                local dashes=""
+                for ((d = 0; d < dc; d++)); do dashes="${dashes}-"; done
+                local sep=""
+                [[ ${left} -eq 1 ]] && sep=":"
+                sep="${sep}${dashes}"
+                [[ ${right} -eq 1 ]] && sep="${sep}:"
+                new_line="${new_line} ${sep} |"
+            else
+                local pad=""
+                for ((p = 0; p < width - ${#cell}; p++)); do pad="${pad} "; done
+                new_line="${new_line} ${cell}${pad} |"
+            fi
+            col=$((col + 1))
+        done
+
+        printf '%s\n' "${indent}${new_line}"
+        row_idx=$((row_idx + 1))
+    done
+}
+
+# ── Process a single file ────────────────────────────────────
+
+flush_table() {
+    local aligned
+    aligned="$(printf '%s\n' "${table_lines[@]}" | align_table)"
+    local original
+    original="$(printf '%s\n' "${table_lines[@]}")"
+    if [[ "${aligned}" != "${original}" ]]; then
+        changed=1
+    fi
+    printf '%s\n' "${aligned}" >> "${tmp_out}"
+    table_lines=()
+    in_table=0
+}
+
+process_file() {
+    local filepath="${1}"
+    local check_only="${2}"
+
+    local tmp_out
+    tmp_out="$(mktemp)"
+
+    local in_table=0 in_fence=0 changed=0
+    local -a table_lines=()
+
+    while IFS= read -r line || [[ -n "${line}" ]]; do
+        if [[ "${line}" =~ ^[[:space:]]*(~~~|\`\`\`) ]]; then
+            if [[ ${in_fence} -eq 0 ]]; then in_fence=1; else in_fence=0; fi
+            [[ ${in_table} -eq 1 ]] && flush_table
+            printf '%s\n' "${line}" >> "${tmp_out}"
+            continue
+        fi
+
+        if [[ ${in_fence} -eq 1 ]]; then
+            [[ ${in_table} -eq 1 ]] && flush_table
+            printf '%s\n' "${line}" >> "${tmp_out}"
+            continue
+        fi
+
+        if [[ "${line}" =~ ^[[:space:]]*\|.+\| ]]; then
+            in_table=1
+            table_lines+=("${line}")
+        else
+            [[ ${in_table} -eq 1 ]] && flush_table
+            printf '%s\n' "${line}" >> "${tmp_out}"
+        fi
+    done < "${filepath}"
+
+    [[ ${in_table} -eq 1 ]] && flush_table
+
+    if [[ ${changed} -eq 1 ]]; then
+        if [[ "${check_only}" == "1" ]]; then
+            echo "  ${filepath}: unaligned"
+            rm -f "${tmp_out}"
+            return 1
+        else
+            cp "${tmp_out}" "${filepath}"
+            echo "  ${filepath}: aligned"
+            rm -f "${tmp_out}"
+            return 0
+        fi
+    fi
+
+    rm -f "${tmp_out}"
+    return 0
+}
+
+# ── Main ─────────────────────────────────────────────────────
+
+CHECK=0
+ALL=0
+FILES=()
+
+while [[ $# -gt 0 ]]; do
+    case "${1}" in
+        -h | --help)
+            sed -n '3,17s/^# \?//p' "${0}"
+            exit 0
+            ;;
+        -c | --check) CHECK=1; shift ;;
+        -a | --all)   ALL=1;   shift ;;
+        *)            FILES+=("${1}"); shift ;;
+    esac
+done
+
+if [[ ${ALL} -eq 1 ]]; then
+    while IFS= read -r -d '' f; do
+        FILES+=("${f}")
+    done < <(git ls-files --cached -z '*.md')
+fi
+
+if [[ ${#FILES[@]} -eq 0 ]]; then
+    echo "Usage: ${0##*/} [--check] [--all | FILE...]" >&2
+    exit 1
+fi
+
+errors=0
+for f in "${FILES[@]}"; do
+    if ! process_file "${f}" "${CHECK}"; then
+        errors=$((errors + 1))
+    fi
+done
+
+if [[ ${errors} -gt 0 ]] && [[ ${CHECK} -eq 1 ]]; then
+    echo "${errors} file(s) have unaligned tables"
+    exit 1
+fi

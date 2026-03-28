@@ -58,6 +58,7 @@
 !README.md
 !bootstrap.sh
 !Brewfile
+!Taskfile.yml
 !.bash_profile
 !.bashrc
 !.bash_aliases
@@ -75,6 +76,7 @@
 !.ansible.cfg
 !.hgignore_global
 !.gitignore_global
+!.gitconfig
 !.psqlrc
 !.prettierrc
 !.shellcheckrc
@@ -132,6 +134,9 @@
 !.config/thefuck/
 !.config/thefuck/settings.py
 
+!.config/safari/
+!.config/safari/stylesheet.css
+
 !.colima/
 !.colima/default/
 !.colima/default/colima.yaml
@@ -154,6 +159,8 @@
 !.local/bin/init-aiexclude
 !.local/bin/metadata_never_index.sh
 !.local/bin/plist-strip-volatile
+!.local/bin/jsonc-lint
+!.local/bin/align-markdown-tables
 
 # local/share directory
 

@@ -1,0 +1,428 @@
+/*
+ * Safari User Stylesheet
+ *
+ * Hides cookie banners, notification overlays, close/dismiss
+ * buttons, and other UI annoyances across frequently visited
+ * websites.
+ *
+ * Apply via: Safari → Settings → Advanced → Style sheet
+ *
+ * Est. 2024
+ */
+
+
+/* ─── Global: Cookie & Consent Banners ─────────────────── */
+
+html body .cookie*,
+html body * #cookie*,
+html body .c-cookie-banner,
+html body #cookie-law-info-bar,
+html body #onetrust-consent-sdk,
+[aria-label="Cookie Consent"] {
+    display: none !important;
+}
+
+
+/* ─── Global: Notifications & Promos ───────────────────── */
+
+.feature-tip,
+.notification,
+.welcome-notification .notification-content {
+    display: none !important;
+}
+
+
+/* ─── Global: Close / Dismiss Buttons ──────────────────── */
+
+[aria-label="Close"],
+[aria-label="close"],
+[aria-label="Dismiss"],
+[aria-label="Close dialog"],
+[aria-label="Close modal"],
+[aria-label="Close menu"],
+[aria-label="Close panel"],
+[aria-label="Close pane"],
+[aria-label="Close settings"],
+[data-close-dialog],
+[data-testid="closeIcon"],
+[icon="close"] {
+    display: none !important;
+}
+
+
+/* ─── Atlassian Confluence ─────────────────────────────── */
+
+[aria-label="Close templates and import"],
+[aria-label="Close Publish Modal"],
+[data-testid="close-comment-sidebar-button"] {
+    display: none !important;
+}
+
+[data-ds--code--row] {
+    line-height: 1.4 !important;
+}
+
+.cc-mv97tq .token.comment,
+.cc-mv97tq .token.block-comment {
+    font-style: normal !important;
+}
+
+
+/* ─── Atlassian Jira ───────────────────────────────────── */
+
+#aui-flag-container {
+    display: none !important;
+}
+
+
+/* ─── ClickUp ──────────────────────────────────────────── */
+
+cu-invite-upgrade-experiment,
+cu-promo-config-banner,
+.cu-color-picker-panel__close,
+[data-modal-intent],
+#pendo-base,
+._pendo-step-container,
+.modal-overlay,
+.task-close,
+.cu-modal__close,
+.cu-user-settings-menu-v2__close,
+.cu-draft-view__titlebar-quick-option,
+.cu-template-center-header__close,
+.cu-dashboard-doc-container__topbar-button,
+.cu-convo-doc-visibility__close,
+.cu-share-entity__close {
+    display: none !important;
+}
+
+.nav-category__name-text {
+    text-overflow: initial !important;
+}
+
+
+/* ─── Danskebank ───────────────────────────────────────── */
+
+.landing-page__container > div > div,
+[data-nosnippet],
+[data-module="cookie-consent-banner"],
+html body .cookie-consent-banner-modal {
+    display: none !important;
+}
+
+html.cookie-consent-banner-open,
+html.cookie-consent-banner-open body {
+    overflow: initial !important;
+    height: initial !important;
+    margin: initial !important;
+}
+
+
+/* ─── Diagrams.net ─────────────────────────────────────── */
+
+.geDialogClose,
+.geHsplit {
+    display: none !important;
+}
+
+
+/* ─── Figma ────────────────────────────────────────────── */
+
+.footer_banner--bannerContainer--*,
+.footer_banner--googleBanner--*,
+.footer_banner--banner--*,
+.footer_banner--bannerTop--* {
+    display: none !important;
+}
+
+
+/* ─── GitHub ───────────────────────────────────────────── */
+
+.Box.js-notice,
+.SelectMenu-closeButton,
+[aria-label="Dismiss banner"],
+[aria-label="Close symbols"] {
+    display: none !important;
+}
+
+.CheckStep-line {
+    line-height: 1.4 !important;
+}
+
+
+/* ─── GitLab ───────────────────────────────────────────── */
+
+.trial-link,
+.gl-alert,
+.gl-alert-warning,
+.gl-banner-close,
+.gl-banner-introduction,
+.js-recovery-settings-callout,
+.js-close,
+.js-close-callout,
+[data-uid="auto_devops_settings_dismissed"],
+[data-qa-selector="autodevops_container"],
+[data-feature-id="gcp_signup_offer"] {
+    display: none !important;
+}
+
+
+/* ─── Google Cloud ─────────────────────────────────────── */
+
+security-insights-promo-banner,
+storage-monitoring-banner,
+.tm-page__header,
+[type="applications"],
+section.tm-block {
+    display: none !important;
+}
+
+[mattooltip="Close panel"],
+[svgicon="pantheon-close"],
+[data-mat-icon-name="pantheon-close"],
+.cfc-icon-up,
+cfc-icon.cfc-icon-up,
+#walkthrough-close-button,
+.settings-dialog__close {
+    display: none !important;
+}
+
+
+/* ─── Grammarly ────────────────────────────────────────── */
+
+.assistant-sidebarTier_fxwymfa {
+    display: none !important;
+}
+
+
+/* ─── Hetzner Robot ────────────────────────────────────── */
+
+.hc-overlay__mask {
+    display: none !important;
+}
+
+table.box_title tbody tr td.server_name {
+    width: 260px !important;
+}
+
+
+/* ─── IQOS ─────────────────────────────────────────────── */
+
+#fencing-overlay.modal,
+#fencing-overlay.modal.active,
+.modal:not(.url-modal):target,
+.modal:not(.url-modal).active {
+    display: none !important;
+}
+
+
+/* ─── Legaldesk ────────────────────────────────────────── */
+
+.flow_modal-close {
+    display: none !important;
+}
+
+
+/* ─── LinkedIn ─────────────────────────────────────────── */
+
+[data-test-icon="close-small"],
+.inline-callout-container--content [aria-label="Close button"],
+.nt-setting-banner__container,
+.feed-shared-control-menu__hide-post-button,
+.bg-promotion,
+.button-promotion,
+[data-testid="drawer-app-header:close"],
+.spotlight-inner {
+    display: none !important;
+}
+
+
+/* ─── Mattermost ───────────────────────────────────────── */
+
+#dismissHintToast,
+.close-btn,
+.post__remove,
+.icon-close,
+.close-x,
+.ProductBrandingContainer-fBwLpu.iTVJAK,
+[aria-label="actions"].post-menu__item,
+#SidebarContainer .SidebarMenu,
+html body.app__body .announcement-bar,
+html body.app__body button.close,
+html body.app__body button.sidebar--right__close {
+    display: none !important;
+}
+
+#SidebarContainer .SidebarChannel.expanded {
+    height: 26px !important;
+}
+
+html body.app__body.os--mac {
+    zoom: 0.9;
+}
+
+@media screen and (min-width: 769px) {
+    #SidebarContainer {
+        width: 344px !important;
+    }
+
+    #SidebarContainer .SidebarChannel .SidebarLink {
+        width: 344px !important;
+    }
+
+    #SidebarContainer + .inner-wrap #app-content,
+    .multi-teams #SidebarContainer + .inner-wrap #app-content {
+        margin-left: 344px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html body.app__body.os--mac div#SidebarContainer,
+    #SidebarContainer {
+        transform: translate3d(-344px, 0, 0);
+    }
+
+    #root #SidebarContainer.move--right,
+    body.app__body #root #SidebarContainer.move--right {
+        left: 0 !important;
+    }
+}
+
+
+/* ─── Microsoft Teams ──────────────────────────────────── */
+
+[ng-if="addCloseIcon"],
+.js-notice-sidebar-popover {
+    display: none !important;
+}
+
+
+/* ─── Okta ─────────────────────────────────────────────── */
+
+[slot="admin-banner"] {
+    display: none !important;
+}
+
+
+/* ─── Open WebUI (localhost) ───────────────────────────── */
+
+[aria-label="Close settings modal"] {
+    display: none !important;
+}
+
+
+/* ─── Outlook 365 ──────────────────────────────────────── */
+
+[aria-label="Close pane"],
+[aria-label="Close settings"] {
+    display: none !important;
+}
+
+
+/* ─── Pleo ─────────────────────────────────────────────── */
+
+svg.Close-*,
+.CloseButton-*,
+[data-telescope-modal-close="true"],
+[aria-label="Close fetch banner"] {
+    display: none !important;
+}
+
+
+/* ─── Quora ────────────────────────────────────────────── */
+
+.q-flex.qu-mb--small {
+    display: none !important;
+}
+
+
+/* ─── Resumeworded ─────────────────────────────────────── */
+
+.close-modal {
+    display: none !important;
+}
+
+
+/* ─── Sentry ───────────────────────────────────────────── */
+
+[aria-label="Quick Start"],
+[data-test-id="icon-close"] {
+    display: none !important;
+}
+
+
+/* ─── Slack ────────────────────────────────────────────── */
+
+.p-multi_file_upload__file_status_btn {
+    left: -10px;
+    right: unset;
+}
+
+.c-announcement-banner__dismiss,
+.c-button-unstyled.c-search__input_and_close__close,
+.c-button-unstyled.c-icon_button.c-icon_button--size_medium.c-sk-modal__close_button.c-icon_button--default,
+.c-icon--times,
+.c-search__close_btn,
+.c-search__close_btn*,
+.p-top_nav__search__clear*,
+[role="img"][data-iur="close"],
+[aria-label="Clear search"],
+[aria-label="Close search"],
+[data-qa="close_flexpane"],
+[data-qa="wizard_modal_close"],
+[data-qa="search_page_close_button"],
+[data-qa="channel_item_close"] {
+    display: none !important;
+}
+
+
+/* ─── StackExchange ────────────────────────────────────── */
+
+.js-consent-banner,
+.s-sidebarwidget.s-sidebarwidget__yellow,
+.sm\:d-none.py24.bg-black-750.fc-black-200.ps-relative,
+.module.featured-sidebar,
+.module.users-sidebar,
+.module.sites-sidebar,
+.bottom-notice,
+.hero-box,
+.js-dismissable-hero {
+    display: none !important;
+}
+
+
+/* ─── Telegram Web ─────────────────────────────────────── */
+
+.icon-close {
+    display: none !important;
+}
+
+
+/* ─── Wolt ─────────────────────────────────────────────── */
+
+[data-test-id="modal-close-button"],
+[aria-label="Luk"] {
+    display: none !important;
+}
+
+
+/* ─── YouTube ──────────────────────────────────────────── */
+
+#comments,
+[aria-label="Create"],
+[aria-label="Notifications"] {
+    display: none !important;
+}
+
+
+/* ─── Zoom ─────────────────────────────────────────────── */
+
+.join-dialog {
+    display: none !important;
+}
+
+
+/* ─── 1Password ────────────────────────────────────────── */
+
+.onboarding-cards--* {
+    display: none !important;
+}

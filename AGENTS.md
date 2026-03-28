@@ -48,6 +48,7 @@ The repository is designed to be copied into `$HOME` on a Mac via `bootstrap.sh`
 │   ├── ripasso/settings.toml   # ripasso password manager
 │   ├── terminal/               # macOS Terminal.app themes (lilac dark/light)
 │   ├── thefuck/settings.py     # thefuck auto-corrector
+│   ├── safari/stylesheet.css   # Safari user stylesheet (hides UI clutter)
 │   └── zed/settings.json       # Zed editor (One Light/Dark, Prettier, Copilot)
 │
 ├── .local/
@@ -109,7 +110,7 @@ Secrets (`.secrets`, `.pgpass`, `.ssh/*`) are **always** ignored and must never 
 - **Final newline**: inserted
 
 ### Shell Scripts
-- Bash (`#!/bin/bash`), POSIX-compatible where possible
+- Bash (`#!/usr/bin/env bash`), POSIX-compatible where possible
 - `shellcheck` directives present (`# shellcheck shell=bash`, `# shellcheck disable=...`)
 - `set -euo pipefail` in standalone scripts
 - Decorative ASCII art banner at top of each main dotfile (rose/flower motif)
@@ -129,35 +130,53 @@ Secrets (`.secrets`, `.pgpass`, `.ssh/*`) are **always** ignored and must never 
 
 The dotfiles configure these tools (all installed via Homebrew on macOS):
 
-| Category         | Tools                                                 |
-|------------------|-------------------------------------------------------|
-| Shell            | bash, zsh, fzf, thefuck                               |
-| Editors          | micro, nano, Zed, Sublime Text                        |
-| Git TUI          | lazygit                                               |
-| Docker TUI       | lazydocker                                            |
-| System monitors  | btop, htop, neofetch                                  |
-| File managers    | Midnight Commander (mc)                               |
-| Text expansion   | espanso                                               |
-| Password manager | ripasso                                               |
-| HTTP clients     | curl, wget, lynx                                      |
-| AI/LLM           | Ollama (local), Crush, OpenCode, Zed Agent (Copilot)  |
-| Databases        | psql (PostgreSQL), sqlite3                            |
-| Infrastructure   | Ansible, Hetzner Cloud (hcloud), Google Cloud         |
-| Languages        | Node.js (nvm), Python (pyenv), Go, Bun                |
-| Fonts            | Fira Code Nerd Font, monofur, Ubuntu, Syne Mono       |
+| Category           | Tools                                                   |
+| ------------------ | ------------------------------------------------------- |
+| Shell              | bash, zsh, fzf, thefuck                                 |
+| Editors            | micro, nano, Zed, Sublime Text                          |
+| Git TUI            | lazygit                                                 |
+| Docker TUI         | lazydocker                                              |
+| System monitors    | btop, htop, neofetch                                    |
+| File managers      | Midnight Commander (mc)                                 |
+| Text expansion     | espanso                                                 |
+| Password manager   | ripasso                                                 |
+| HTTP clients       | curl, wget, lynx                                        |
+| AI/LLM             | Ollama (local), Crush, OpenCode, Zed Agent (Copilot)    |
+| Databases          | psql (PostgreSQL), sqlite3                              |
+| Infrastructure     | Ansible, Hetzner Cloud (hcloud), Google Cloud           |
+| Languages          | Node.js (nvm), Python (pyenv), Go, Bun                  |
+| Fonts              | Fira Code Nerd Font, monofur, Ubuntu, Syne Mono         |
 
-## No Build, Test, or Lint Commands
+## Lint Commands
 
-This is a configuration-only repository. There are:
-- No package managers (no `package.json`, `go.mod`, etc.)
-- No test frameworks
-- No CI/CD pipelines
-- No Makefile
+Linters are orchestrated via [Taskfile](https://taskfile.dev/)
+(`Taskfile.yml`). Run `task --list-all` to see available targets.
+
+| Command                | Tool                  | What it checks                     |
+| ---------------------- | --------------------- | ---------------------------------- |
+| `task lint`            | (all below)           | Run every linter in parallel       |
+| `task lint:bash`       | shellcheck            | All tracked bash scripts           |
+| `task lint:python`     | ruff                  | All tracked Python scripts         |
+| `task lint:markdown`   | markdownlint          | `*.md` files                       |
+| `task lint:json`       | jsonc-lint            | `*.json` files (JSONC-aware)       |
+| `task lint:tables`     | align-markdown-tables | Markdown table alignment           |
+| `task fmt:tables`      | align-markdown-tables | Auto-align tables in-place         |
+| `task fmt:plist`       | plist-strip-volatile  | Strip volatile keys from plists    |
+
+File discovery is automatic — targets find tracked files via
+`git ls-files` and detect bash/python by shebang or
+`# shellcheck shell=bash` directive.
+
+There are no test frameworks, CI/CD pipelines, or package managers.
 
 Executable scripts:
-- `bootstrap.sh` — rsync all dotfiles from the repo into `$HOME` (supports `--dry-run`)
-- `.local/bin/terminal-theme-switcher` — switches macOS Terminal.app between dark/light themes
-- `.local/bin/metadata_never_index.sh` — prevents Spotlight from indexing junk directories
+
+- `bootstrap.sh` — rsync all dotfiles into `$HOME` (`--dry-run`)
+- `.local/bin/terminal-theme-switcher` — switches Terminal.app dark/light
+- `.local/bin/metadata_never_index.sh` — prevents Spotlight indexing
+- `.local/bin/jsonc-lint` — validates JSON/JSONC files
+- `.local/bin/align-markdown-tables` — aligns markdown table columns
+- `.local/bin/init-aiexclude` — scaffolds AI exclusion files
 
 ## Common Tasks
 

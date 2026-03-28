@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+set: [errexit, pipefail]
+
+tasks:
+    default:
+        desc: List available tasks
+        cmd: task --list-all
+
+    lint:
+        desc: Run all linters
+        deps: [lint:bash, lint:python, lint:markdown, lint:json, lint:tables]
+
+    lint:bash:
+        desc: Lint bash scripts with shellcheck
+        preconditions:
+            - sh: command -v shellcheck
+              msg: shellcheck is not installed (brew install shellcheck)
+        cmd:
+            bash -c 'git ls-files --cached |
+            while IFS= read -r f; do
+                head -1 "$f" 2>/dev/null |
+                grep -qE "^#!.*\bbash\b|^# shellcheck shell=bash" &&
+                printf "%s\0" "$f";
+            done | xargs -0 shellcheck'
+
+    lint:python:
+        desc: Lint Python files with ruff
+        preconditions:
+            - sh: command -v ruff
+              msg: ruff is not installed (brew install ruff)
+        cmd:
+            bash -c 'git ls-files --cached |
+            while IFS= read -r f; do
+                head -1 "$f" 2>/dev/null |
+                grep -qE "^#!.*\bpython" &&
+                printf "%s\0" "$f";
+            done | xargs -0 ruff check'
+
+    lint:markdown:
+        desc: Lint Markdown files with markdownlint
+        preconditions:
+            - sh: command -v markdownlint
+              msg: markdownlint is not installed (brew install markdownlint-cli)
+        cmd:
+            bash -c 'git ls-files --cached -z "*.md" |
+            xargs -0 markdownlint'
+
+    lint:json:
+        desc: Validate JSON/JSONC files
+        cmd:
+            bash -c 'git ls-files --cached -z "*.json" |
+            xargs -0 .local/bin/jsonc-lint'
+
+    lint:tables:
+        desc: Check markdown table alignment
+        cmd: .local/bin/align-markdown-tables --check --all
+
+    fmt:tables:
+        desc: Align markdown tables in-place
+        cmd: .local/bin/align-markdown-tables --all
+
+    fmt:plist:
+        desc: Strip volatile keys from tracked plists
+        cmd:
+            bash -c 'git ls-files --cached -z "*.plist" |
+            xargs -0 -n1 .local/bin/plist-strip-volatile'

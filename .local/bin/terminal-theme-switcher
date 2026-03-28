@@ -12,9 +12,9 @@ get_macos_appearance() {
 
 choose_theme() {
     if [ "$1" = "dark" ]; then
-        echo "$DARK"
+        echo "${DARK}"
     elif [ "$1" = "light" ]; then
-        echo "$LIGHT"
+        echo "${LIGHT}"
     else
         local hour
         hour=$(date +%H)
@@ -30,13 +30,13 @@ apply_theme() {
     local theme="$1"
 
     # Set default and startup profiles
-    defaults write com.apple.Terminal "Default Window Settings" -string "$theme"
-    defaults write com.apple.Terminal "Startup Window Settings" -string "$theme"
+    defaults write com.apple.Terminal "Default Window Settings" -string "${theme}"
+    defaults write com.apple.Terminal "Startup Window Settings" -string "${theme}"
 
     # Apply to all open Terminal windows/tabs
     osascript -e "
         tell application \"Terminal\"
-            set targetSettings to settings set \"$theme\"
+            set targetSettings to settings set \"${theme}\"
             repeat with w in windows
                 repeat with t in tabs of w
                     set current settings of t to targetSettings
@@ -47,5 +47,5 @@ apply_theme() {
 }
 
 theme=$(choose_theme "$1")
-apply_theme "$theme"
-echo "Applied: $theme"
+apply_theme "${theme}"
+echo "Applied: ${theme}"
