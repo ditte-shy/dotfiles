@@ -1,32 +1,35 @@
 # dotfiles
 
-Personal macOS dotfiles — shell config, CLI tools, fonts, editor settings, app preferences, and utility scripts.
+Personal macOS dotfiles — shell config, CLI tools, fonts,
+editor settings, app preferences, and utility scripts.
 
 Designed for macOS on Apple Silicon with Homebrew.
 
 ## What's inside
 
-| Category        | What gets configured                               |
-| --------------- | -------------------------------------------------- |
-| Shell           | bash, fzf, thefuck, prompt, history, completions   |
-| Editors         | micro, nano, Zed, Sublime Text                     |
-| Git             | lazygit, global gitignore                          |
-| Docker          | lazydocker                                         |
-| System monitors | btop, htop, neofetch                               |
-| File managers   | Midnight Commander (custom skins & syntax)         |
-| Text expansion  | espanso (snippets, dates, IP lookup)               |
-| AI / LLM        | Ollama, Crush, OpenCode, Zed Agent                 |
-| HTTP clients    | curl, wget, lynx                                   |
-| Databases       | psql, sqlite3                                      |
-| Infrastructure  | Ansible, Hetzner Cloud, Google Cloud               |
-| Fonts           | Fira Code Nerd Font, monofur, Ubuntu, Syne Mono    |
-| macOS           | Terminal.app themes, LaunchAgents, system & app preferences |
+| Category        | What gets configured                   |
+| --------------- | -------------------------------------- |
+| Shell           | bash, fzf, thefuck, prompt, history    |
+| Editors         | micro, nano, Zed, Sublime Text         |
+| Git             | lazygit, global gitignore              |
+| Docker          | lazydocker                             |
+| System monitors | btop, htop, neofetch                   |
+| File managers   | Midnight Commander (skins & syntax)    |
+| Text expansion  | espanso (snippets, dates, IP lookup)   |
+| AI / LLM        | Ollama, Crush, OpenCode, Zed Agent     |
+| HTTP clients    | curl, wget, lynx                       |
+| Databases       | psql, sqlite3                          |
+| Infrastructure  | Ansible, Hetzner Cloud, Google Cloud   |
+| Fonts           | Fira Code Nerd Font, monofur, Ubuntu   |
+| macOS           | Terminal.app, LaunchAgents, prefs      |
 
 ---
 
 ## Creating a new user from an existing one
 
-The full workflow: clone an existing user profile (e.g. **daisy**) for the look and feel, then layer these dotfiles on top for shell and CLI tool configuration.
+The full workflow: clone an existing user profile
+(e.g. **daisy**) for the look and feel, then layer these
+dotfiles on top for shell and CLI tool configuration.
 
 ### Prerequisites
 
@@ -42,14 +45,18 @@ Using System Settings:
 Or from the command line:
 
 ```bash
-sudo sysadminctl -addUser <newuser> -fullName "New User" -password "<password>"
+sudo sysadminctl -addUser <newuser> \
+    -fullName "New User" -password "<password>"
 ```
 
-> **Do not log in as the new user yet.** The home directory needs to be populated first.
+> **Do not log in as the new user yet.** The home
+> directory needs to be populated first.
 
 ### Step 2 — Clone the source user's profile
 
-Copy the source user's home directory into the new one, excluding identity-bound and cache directories that would cause problems:
+Copy the source user's home directory into the new one,
+excluding identity-bound and cache directories that would
+cause problems:
 
 ```bash
 sudo rsync -aE /Users/daisy/ /Users/<newuser>/ \
@@ -77,24 +84,34 @@ sudo chown -R <newuser>:staff /Users/<newuser>
 
 #### What gets copied vs. excluded
 
-| Copied (look & feel)                                | Excluded (identity-bound)            |
-| --------------------------------------------------- | ------------------------------------ |
-| `Library/Preferences/` — Dock, Finder, app settings | `Library/Keychains/` — credentials   |
-| `Library/Fonts/` — installed fonts                  | `Library/Accounts/` — Apple ID link  |
-| `Library/LaunchAgents/` — scheduled tasks           | `Library/Cookies/` — browser cookies |
-| `.config/` — CLI tool settings                      | `Library/Biome/` — system analytics  |
-| Desktop wallpaper, Dock layout, Finder sidebar      | `Library/Mail/` — email data         |
-| Terminal.app themes & preferences                   | `Library/Messages/` — iMessage data  |
-|                                                     | `Library/Safari/` — browsing data    |
-|                                                     | `Library/Caches/` — temporary data   |
-|                                                     | `.ssh/` — keys and known hosts       |
+**Copied (look & feel):**
+
+- `Library/Preferences/` — Dock, Finder, app settings
+- `Library/Fonts/` — installed fonts
+- `Library/LaunchAgents/` — scheduled tasks
+- `.config/` — CLI tool settings
+- Desktop wallpaper, Dock layout, Finder sidebar
+- Terminal.app themes & preferences
+
+**Excluded (identity-bound):**
+
+- `Library/Keychains/` — credentials
+- `Library/Accounts/` — Apple ID link
+- `Library/Cookies/` — browser cookies
+- `Library/Biome/` — system analytics
+- `Library/Mail/` — email data
+- `Library/Messages/` — iMessage data
+- `Library/Safari/` — browsing data
+- `Library/Caches/` — temporary data
+- `.ssh/` — keys and known hosts
 
 ### Step 3 — Apply dotfiles on top
 
 Log in as the new user, then:
 
 ```bash
-git clone https://github.com/ditte-shy/dotfiles.git ~/.dotfiles
+git clone https://github.com/ditte-shy/dotfiles.git \
+    ~/.dotfiles
 ```
 
 Preview what will be written:
@@ -109,9 +126,12 @@ Apply:
 ~/.dotfiles/bootstrap.sh
 ```
 
-This rsyncs all tracked config files from the repo into `$HOME`, giving you the latest shell setup, editor configs, fonts, tool settings, and macOS system preferences.
+This rsyncs all tracked config files from the repo into
+`$HOME`, giving you the latest shell setup, editor configs,
+fonts, tool settings, and macOS system preferences.
 
-After applying, force macOS to pick up the new preference files:
+After applying, force macOS to pick up the new preference
+files:
 
 ```bash
 killall cfprefsd      # flush preferences cache
@@ -131,31 +151,37 @@ A few things that need manual attention after cloning:
     ssh-keygen -t ed25519 -C "${USER}"
     ```
 
-2. **Create `~/.secrets`** with any API tokens or credentials the shell expects
-   (`.bash_profile` sources this file if it exists)
+2. **Create `~/.secrets`** with any API tokens or
+   credentials the shell expects (`.bash_profile` sources
+   this file if it exists)
 
-3. **Sign in to apps** — iCloud, GitHub, Copilot, etc. need fresh authentication
+3. **Sign in to apps** — iCloud, GitHub, Copilot, etc.
+   need fresh authentication
 
 4. **Verify Homebrew** — if not installed, run:
 
     ```bash
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL \
+        https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
 
-5. **Install CLI tools** that the dotfiles expect (fzf, micro, lazygit, etc.):
+5. **Install all packages** from the Brewfile (formulae,
+   casks, and Mac App Store apps):
+
     ```bash
-    brew install fzf micro lazygit lazydocker btop htop neofetch \
-        thefuck espanso midnight-commander glow cheat ripasso ollama
+    brew bundle --file=~/.dotfiles/Brewfile
     ```
 
 ---
 
 ## Using just the dotfiles (without cloning a user)
 
-If you only want the shell and CLI config on an existing user:
+If you only want the shell and CLI config on an existing
+user:
 
 ```bash
-git clone https://github.com/ditte-shy/dotfiles.git ~/.dotfiles
+git clone https://github.com/ditte-shy/dotfiles.git \
+    ~/.dotfiles
 ~/.dotfiles/bootstrap.sh --dry-run   # preview
 ~/.dotfiles/bootstrap.sh             # apply
 ```
@@ -164,69 +190,165 @@ git clone https://github.com/ditte-shy/dotfiles.git ~/.dotfiles
 
 ## Included system preferences
 
-The repo includes macOS preference plists (`Library/Preferences/`) so a new user can be fully configured from the repo alone, without needing to rsync from an existing user's home directory.
+The repo includes macOS preference plists
+(`Library/Preferences/`) so a new user can be fully
+configured from the repo alone, without needing to rsync
+from an existing user's home directory.
 
-| Plist | What it configures |
-| ----- | ------------------ |
-| `.GlobalPreferences.plist` | Accent color (graphite), auto dark mode, languages (EN + RU), date format (ISO 8601), DuckDuckGo search, alert sound, font smoothing |
-| `com.apple.dock.plist` | Autohide, left orientation, magnification, tile size, hot corners, no recent apps |
-| `com.apple.finder.plist` | Folders first, column auto-sizing, view settings, sidebar, new window target |
-| `com.apple.HIToolbox.plist` | Keyboard input sources: U.S. + Russian Phonetic |
-| `com.apple.symbolichotkeys.plist` | Custom keyboard shortcuts (Spotlight disabled on most Fn keys) |
-| `com.apple.AppleMultitouchMouse.plist` | Mouse gestures and button modes |
-| `com.apple.AppleMultitouchTrackpad.plist` | Trackpad: tap to click, gesture settings, scroll behavior |
-| `com.apple.driver.AppleBluetoothMultitouch.mouse.plist` | Bluetooth mouse driver settings |
-| `com.apple.driver.AppleBluetoothMultitouch.trackpad.plist` | Bluetooth trackpad driver settings |
-| `com.apple.driver.AppleHIDMouse.plist` | HID mouse button mapping |
-| `com.apple.controlcenter.plist` | Control Center and menu bar item visibility |
-| `com.apple.menuextra.clock.plist` | Analog clock, date display, no day-of-week |
-| `com.apple.spaces.plist` | Mission Control / Spaces configuration |
-| `com.apple.wallpaper.plist` | Desktop wallpaper (Sequoia Sunrise) |
-| `com.adguard.mac.adguard.plist` | AdGuard ad blocker filter and DNS settings |
+`.GlobalPreferences`
+: Accent color, auto dark mode, languages (EN + RU),
+  ISO 8601 dates, DuckDuckGo, font smoothing
 
-These are deployed alongside everything else by `bootstrap.sh`. After applying, run the `killall` commands listed in step 3 above to force macOS to reload them.
+`com.apple.dock`
+: Autohide, left orientation, magnification, tile size,
+  hot corners, no recent apps
+
+`com.apple.finder`
+: Folders first, column auto-sizing, view settings,
+  sidebar, new window target
+
+`com.apple.HIToolbox`
+: Keyboard input sources: U.S. + Russian Phonetic
+
+`com.apple.symbolichotkeys`
+: Custom keyboard shortcuts
+
+`com.apple.AppleMultitouchMouse`
+: Mouse gestures and button modes
+
+`com.apple.AppleMultitouchTrackpad`
+: Tap to click, gesture settings, scroll behavior
+
+`com.apple.driver.AppleBluetoothMultitouch.mouse`
+: Bluetooth mouse driver settings
+
+`com.apple.driver.AppleBluetoothMultitouch.trackpad`
+: Bluetooth trackpad driver settings
+
+`com.apple.driver.AppleHIDMouse`
+: HID mouse button mapping
+
+`com.apple.controlcenter`
+: Control Center and menu bar item visibility
+
+`com.apple.menuextra.clock`
+: Analog clock, date display
+
+`com.apple.spaces`
+: Mission Control / Spaces configuration
+
+`com.apple.wallpaper`
+: Desktop wallpaper (Sequoia Sunrise)
+
+`com.adguard.mac.adguard`
+: AdGuard ad blocker filter and DNS settings
+
+These are deployed alongside everything else by
+`bootstrap.sh`. After applying, run the `killall` commands
+listed in step 3 above to force macOS to reload them.
 
 ---
 
 ## Included scripts
 
-| Script                               | Purpose                                                 |
-| ------------------------------------ | ------------------------------------------------------- |
-| `bootstrap.sh`                       | Apply all dotfiles to `$HOME` via rsync                 |
-| `.local/bin/terminal-theme-switcher` | Switch Terminal.app between lilac dark and light themes |
-| `.local/bin/metadata_never_index.sh` | Prevent Spotlight from indexing junk directories        |
+| Script                               | Purpose                                  |
+| ------------------------------------ | ---------------------------------------- |
+| `bootstrap.sh`                       | Apply all dotfiles to `$HOME` via rsync  |
+| `.local/bin/terminal-theme-switcher` | Switch Terminal.app dark/light themes    |
+| `.local/bin/metadata_never_index.sh` | Prevent Spotlight indexing junk dirs     |
+| `.local/bin/init-aiexclude`          | Scaffold AI exclusion files for projects |
 
 ---
 
 ## Plist hygiene
 
-macOS preference files (`.plist`) store volatile state like window positions, toolbar layouts, and timestamps that change constantly and pollute diffs.
+macOS preference files (`.plist`) store volatile state
+like window positions, toolbar layouts, and timestamps
+that change constantly and pollute diffs.
 
-A **pre-commit hook** automatically strips these noisy keys before any plist is committed:
+A **pre-commit hook** automatically strips these noisy
+keys before any plist is committed:
 
-| Component | Path |
-|---|---|
-| Strip script | `.local/bin/plist-strip-volatile` |
-| Pre-commit hook | `.githooks/pre-commit` |
+| Component       | Path                              |
+| --------------- | --------------------------------- |
+| Strip script    | `.local/bin/plist-strip-volatile` |
+| Pre-commit hook | `.githooks/pre-commit`            |
 
 ### What gets stripped
 
 - `NSWindow Frame *` — window positions and sizes
-- `NSSplitView Subview Frames *` — split view divider positions
+- `NSSplitView Subview Frames *` — split view dividers
 - `NSToolbar Configuration *` — toolbar customizations
 - `NSOutlineView Items *`, `NSTableView *` — view state
-- `NSNavPanel*`, `NSOSPLastRootDirectory` — file dialog state
-- `NSColorPanelMode`, `NSFontPanelAttributes` — panel state
-- `SULastCheckTime`, `SUHasLaunchedBefore` — Sparkle update timestamps
+- `NSNavPanel*`, `NSOSPLastRootDirectory` — file dialogs
+- `NSColorPanelMode`, `NSFontPanelAttributes` — panels
+- `SULastCheckTime`, `SUHasLaunchedBefore` — Sparkle
 - `TB *` — toolbar display settings
-- `Window Groups`, `WindowList`, `WindowNumber` — Terminal window state
-- `ScrollerStyle`, `TabSelected`, `findHistory`, `replaceHistory` — UI ephemera
+- `Window Groups`, `WindowList`, `WindowNumber` — Terminal
+- `ScrollerStyle`, `TabSelected`, `findHistory` — UI
 
-The hook runs `plist-strip-volatile` on every staged binary plist, removes the volatile keys, and re-stages the cleaned file — all transparently.
+The hook runs `plist-strip-volatile` on every staged
+binary plist, removes the volatile keys, and re-stages
+the cleaned file — all transparently.
 
 ### Adding new volatile keys
 
-Edit the `VOLATILE_PREFIXES` or `VOLATILE_EXACT` sets in `.local/bin/plist-strip-volatile`.
+Edit the `VOLATILE_PREFIXES` or `VOLATILE_EXACT` sets
+in `.local/bin/plist-strip-volatile`.
+
+---
+
+## AI ignore files
+
+`init-aiexclude` scaffolds AI context-exclusion files
+for any project. It creates `.aiexclude` as the single
+source of truth, then generates tool-specific copies
+that AI assistants actually read:
+
+- `.geminiignore` (Gemini)
+- `.cursorignore` (Cursor)
+- `.codeiumignore` (Codeium / Windsurf)
+- `.aiignore` (GitHub Copilot)
+- `.agentignore` (Codex / other agents)
+- `.crushignore` (Crush)
+
+### Home directory
+
+The home directory includes a tailored `.aiexclude` that
+prevents AI agents from crawling into caches, runtimes,
+cloud state, credentials, and user data when operating
+from `$HOME`. `bootstrap.sh` automatically runs
+`init-aiexclude --sync` after deploying dotfiles to keep
+all targets up to date.
+
+### New projects
+
+```bash
+cd ~/projects/my-app
+init-aiexclude           # create .aiexclude + 6 targets
+init-aiexclude --sync    # regenerate after editing
+init-aiexclude --check   # verify targets are in sync
+```
+
+---
+
+## Brewfile
+
+All Homebrew formulae, casks, and Mac App Store apps are
+declared in `Brewfile`.
+
+```bash
+brew bundle                 # install everything
+brew bundle check           # verify all installed
+brew bundle cleanup         # show unlisted packages
+brew bundle cleanup --force # remove unlisted packages
+```
+
+To regenerate the Brewfile from the current system state:
+
+```bash
+brew bundle dump --force
+```
 
 ---
 

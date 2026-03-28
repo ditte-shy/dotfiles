@@ -68,3 +68,17 @@ fi
 
 echo ""
 echo "Done."
+
+####################################################################
+### Generate AI ignore files from .aiexclude #######################
+####################################################################
+
+if [[ -f "${TARGET}/.aiexclude" ]] && command -v init-aiexclude &> /dev/null; then
+    echo ""
+    echo "Syncing AI ignore files from .aiexclude ..."
+    init-aiexclude --sync "${TARGET}"
+elif [[ -f "${TARGET}/.aiexclude" ]] && [[ -x "${TARGET}/.local/bin/init-aiexclude" ]]; then
+    echo ""
+    echo "Syncing AI ignore files from .aiexclude ..."
+    "${TARGET}/.local/bin/init-aiexclude" --sync "${TARGET}"
+fi
