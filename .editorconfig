@@ -47,76 +47,137 @@
 #                      .::::::                        .::::::
 #                      ::::::'                        ::::::'
 
-# -------------------------------------
-#
-# ~/.editorconfig in a nice manner
-#
-# -------------------------------------
-
-
+####################################################################
 # EditorConfig is awesome: https://EditorConfig.org
+####################################################################
 
-# top - most EditorConfig file
 root = true
 
 ####################################################################
+# Defaults
+####################################################################
 
-# Unix - style newlines with a newline ending every file
 [*]
-end_of_line = lf
 charset = utf-8
+end_of_line = lf
+insert_final_newline = true
 trim_trailing_whitespace = true
-insert_final_newline = true
-insert_final_newline = true
 indent_style = space
 indent_size = 4
 
 ####################################################################
-
-# [*.{js,py}]
-
+# Markdown
 ####################################################################
 
-# [*.py]
+[*.md]
+max_line_length = 150
+trim_trailing_whitespace = false
 
+####################################################################
+# Shell Scripts
+####################################################################
+
+[*.{sh,bash}]
+indent_style = space
+indent_size = 4
+binary_next_line = true
+switch_case_indent = true
+space_redirects = true
+function_next_line = true
+
+####################################################################
+# Go
+####################################################################
+
+[*.go]
+indent_style = tab
+indent_size = 4
+
+####################################################################
+# TypeScript, JavaScript
+####################################################################
+
+[*.{ts,tsx,js,jsx,mjs,cjs}]
+indent_style = space
+indent_size = 4
+max_line_length = 120
+
+####################################################################
+# JSON
+####################################################################
+
+[*.{json,jsonc}]
+indent_style = space
+indent_size = 4
+
+####################################################################
+# YAML
+####################################################################
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+####################################################################
+# SQL
+####################################################################
+
+[*.sql]
+indent_style = space
+indent_size = 4
+max_line_length = 150
+
+####################################################################
+# Python
+####################################################################
+
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 120
+
+####################################################################
+# Makefile
 ####################################################################
 
 [{m,M}akefile]
 indent_style = tab
 
 ####################################################################
-
-[Makefile]
-indent_style = tab
-
+# Package files
 ####################################################################
 
-# Indentation override for all JS under lib directory
-[lib/**.js]
+[{package.json,package-lock.json,bun.lockb}]
+indent_style = space
 indent_size = 2
 
 ####################################################################
+# Config files
+####################################################################
 
-# Matches the exact files either package.json or .travis.yml
-[{package.json,.travis.yml}]
+[*.{ini,env}]
+indent_style = space
+indent_size = 4
+
+####################################################################
+# HTML
+####################################################################
+
+[*.html]
+indent_style = space
 indent_size = 2
 
 ####################################################################
-
-# [*.{sh,bash}]
-
+# CSS, SCSS
 ####################################################################
 
-shell_variant      = posix # like -ln=posix
-binary_next_line   = true  # like -bn
-switch_case_indent = true  # like -ci
-space_redirects    = true  # like -sr
-keep_padding       = true  # like -kp
-function_next_line = true  # like -fn
-never_split        = true  # like -ns
+[*.{css,scss}]
+indent_style = space
+indent_size = 2
 
 ####################################################################
+# Ignore third_party
+####################################################################
 
-# Ignore the entire "third_party" directory.
 [third_party/**]
 ignore = true
